@@ -3,7 +3,7 @@ import utilizadores
 import emprestimos
 
 def menu_principal():
-    while True:
+    if opcao == "1":
         print("\n")
         print("="*30)
         print("SISTEMA DE GESTÃO DE BIBLIOTECA")

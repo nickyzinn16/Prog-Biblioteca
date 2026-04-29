@@ -1,0 +1,266 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 60px;
+    background-color: #0a2c66;
+}
+
+.logo img { 
+    width: 50px; 
+    height: auto; 
+    border-radius: 25%; 
+}
+
+.menu ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.menu ul li a:hover {
+    color: #ffc107;
+}
+
+.menu ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #ffc107;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.menu ul li a:hover::after {
+    width: 100%;
+}
+
+.navbar .btn-login {
+    background-color: #ffc107;
+    color: #0a2c66;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.blog-container {
+    margin-top: 80px;
+    padding: 30px 80px;
+}
+
+.pesquisar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.pesquisar input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid lightgray;
+}
+
+.pesquisar button {
+    padding: 10px 20px;
+    border: none;
+    background: #0a2c66;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.catalogo a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 10px;
+    background: white;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+.catalogo a:hover {
+    transform: translateY(-5px);
+}
+
+.catalogo img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.catalogo h3 {
+    padding: 15px;
+    color: #0a2c66;
+    font-size: 18px;
+    margin: 0;
+}
+
+.catalogo p {
+    padding: 0 20px 20px;
+    color: #0a2c66;
+    text-align: justify;
+    line-height: 1.6;
+    margin: 0;
+}
+
+h2 {
+    color: #0a2c66;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    background-color: #0a2c66;
+    color: white;
+    margin-top: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 40px 80px;
+}
+
+.imagem-footer {
+    flex: 1;
+    min-width: 200px;
+}
+
+.info-uteis {
+    flex: 1;
+    min-width: 200px;
+}
+
+.info-uteis a:hover {
+    color: #FFD700;
+}
+
+.endereco-contactos {
+    flex: 1;
+    min-width: 200px;
+}
+
+.endereco-contactos a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.endereco-contactos a:hover {
+    text-decoration: none;
+    color: #FFD700;
+}
+
+.redes-container {
+    flex: 1;
+    min-width: 200px;
+}
+
+.imagem-footer img {
+    width: 80px;
+    margin-bottom: 10px;
+    border-radius: 25%;
+}
+
+.imagem-footer p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffc107;
+    margin-left: -32px;
+}
+
+.footer h4 {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.info-uteis ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-uteis ul li {
+    margin-bottom: 9px;
+}
+
+.info-uteis ul li a {
+    text-decoration: none;
+    color: lightgray;
+}
+
+.endereco-contactos p {
+    margin-bottom: 4px;
+    color: lightgray;
+}
+
+.redes-sociais a {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 90px;
+    font-size: 16px;
+}
+
+.footer-bottom a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: none;
+    color: #FFD700;
+}
