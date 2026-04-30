@@ -90,12 +90,11 @@ section {
     right: 20px;
     padding: 12px 15px;
     font-size: 18px;
-    background-color: #0a2c66;
+    background-color: #2D1E6A;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    display: none;
 }
 
 h2 {
