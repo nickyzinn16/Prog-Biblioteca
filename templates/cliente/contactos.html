@@ -3,18 +3,19 @@
     <head>
         <meta charset="utf-8">
         <title>Contactos - Biblioteca</title>
-        <link rel="icon" type="image/png" href="../images/Logo.png">
-        <link rel="stylesheet" href="../static/css/base.css">
-        <link rel="stylesheet" href="../static/css/contactos.css">
-        <link rel="stylesheet" href="../static/css/footer.css">
+        <link rel="icon" type="image/png" href="../../images/Logo.png">
+        <link rel="stylesheet" href="../../static/css/cliente/base.css">
+        <link rel="stylesheet" href="../../static/css/cliente/contactos.css">
+        <link rel="stylesheet" href="../../static/css/cliente/footer.css">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
     <body>
+
         <header class="header">
             <nav class="navbar">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="../images/Logo.png" alt="Logo">
+                        <img src="../../images/Logo.png" alt="Logo">
                     </a>
                 </div>
 
@@ -25,7 +26,15 @@
                         <li><a href="favoritos.html">Favoritos</a></li>
                         <li><a href="promocoes.html">Promoções</a></li>
                         <li><a href="contactos.html" class="ativo">Contacta-nos</a></li>
-                        <li><a href="login.html" class="btn-login">Login</a></li>
+                        <li class="user-menu">
+                            <a href="#" class="user-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </a>
+                            <div class="sair-cliente">
+                                <p class="user-name">Nome</p>
+                                <a href="../../index.html">Sair da conta</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -84,7 +93,7 @@
             <div class="footer-container">
                 <div class="imagem-footer">
                     <a href="index.html">
-                        <img src="../images/Logo.png" alt="Logo">
+                        <img src="../../images/Logo.png" alt="Logo">
                     </a>
                     <p>BIBLIOTECA DO MINDELO</p>
                 </div>
@@ -124,7 +133,7 @@
         </footer>
 
         <button id="btn-topo">↑</button>
-        <script src="../static/javascript/botao.js"></script>
+        <script src="../../static/javascript/botao.js"></script>
 
     </body>
 </html>

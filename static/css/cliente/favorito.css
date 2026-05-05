@@ -1,5 +1,5 @@
 /* Alinhar ao centro os elementos */
-.promocoes {
+.favoritos {
     text-align: center;
 }
 
@@ -16,31 +16,37 @@
     color: #2D1E6A;
 }
 
-/* Área das Promoções */
-.area-promocoes {
+/* Área dos Favoritos */
+.area-favoritos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 20px;
+    grid-template-columns: repeat(4, 1fr);
     justify-items: center;
 }
 
-/* Card */
+/* Estilo dos cards que contem as promoções de cada livro */
 .card {
     background: white;
     padding: 20px;
     border-radius: 12px;
     width: 320px;
+    position: relative;
     transition: 0.3s;
-    text-align: center; /* 🔥 garante tudo centrado */
 }
 
-/* Hover */
+/* Estilo da area de favoritos */
+.area-favoritos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Efeito de hover para os cards */
 .card:hover {
     transform: translateY(-5px);
 }
 
-/* Imagem */
+/* Estilo da imagem dos livros dentro do card */
 .card img {
     width: 100%;
     height: 250px;
@@ -48,46 +54,21 @@
     border-radius: 6px;
 }
 
-/* Título */
+/* Titulo do livro */
 .card h3 {
     margin: 10px 0;
-    color: #2D1E6A;
+    color: #2D1E6A
 }
 
+/* Texto dentro titulo */
 .card p {
-    margin: 5px 0;
-    color: #2D1E6A;
+    text-align: justify;
+    line-height: 1.6;
+    color: #2D1E6A
 }
 
-/* Preço antigo */
-.preco-antigo {
-    text-decoration: line-through;
-    color: gray;
-    font-size: 14px;
-    text-align: center;
-}
 
-/* Preço atual */
-.preco-atual {
-    font-size: 18px;
-    font-weight: bold;
-    color: #2D1E6A;
-    text-align: center;
-}
-
-/* Desconto */
-.desconto {
-    display: inline-block;
-    margin-top: 5px;
-    background-color: #ffc107;
-    color: black;
-    font-size: 13px;
-    padding: 3px 6px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-/* Botão */
+/* Estilo do botão de adicionar ao carrinho o livro */
 .card button {
     margin-top: 10px;
     width: 100%;
@@ -99,6 +80,7 @@
     cursor: pointer;
 }
 
+/* Efeito de hover para o botão */
 .card button:hover {
     background-color: #1f144a;
 }
