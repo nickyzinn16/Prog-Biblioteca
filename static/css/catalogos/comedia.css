@@ -1,11 +1,10 @@
-.livros{
+.livro{
    display: flex;
-   flex-direction: column;
    gap: 30px;
+   margin: 25px;
 }
 
-.livro{
-    width: 100%;
-    height: auto;
-    display: flex;
+.livro img{
+    width: 150px;
+    height: 100px;
 }

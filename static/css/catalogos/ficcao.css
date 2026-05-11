@@ -1,0 +1,10 @@
+.livro{
+   display: flex;
+   gap: 30px;
+   margin: 25px;
+}
+
+.livro img{
+    width: 150px;
+    height: 100px;
+}
