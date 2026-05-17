@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Início - Funcionário</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/index.css') }}">
+        <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="{{ url_for('dashboard_funcionario') }}">
+                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
+                    </a>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="{{ url_for('dashboard_funcionario') }}" class="ativo">Início</a></li>
+                        <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
+                        <li><a href="#">Empréstimos</a></li>
+                        <li><a href="#">Relatórios</a></li>
+                        <li><a href="#">Utilizadores</a></li>
+                        <li class="user-menu">
+                            <a href="#" class="user-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </a>
+                            <div class="sair-cliente">
+                                <p class="user-name">{{ session['nome'] }}</p>
+                                <a href="{{ url_for('logout') }}">Sair da conta</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <h1 class="titulo">Painel de Funcionário</h1>
+            <div class="menu-grid">
+                <a href="{{ url_for('func_livros') }}" class="menu-card"><i class="fa-solid fa-book"></i><h3>Livros</h3></a>
+                <a href="#" class="menu-card"><i class="fa-solid fa-circle-arrow-left"></i><h3>Empréstimos</h3></a>
+                <a href="#" class="menu-card"><i class="fa-solid fa-users"></i><h3>Utilizadores</h3></a>
+                <a href="#" class="menu-card"><i class="fa-solid fa-chart-area"></i><h3>Relatórios</h3></a>
+            </div>
+        </main>
+
+        <button id="btn-topo">↑</button>
+        <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
+    </body>
+</html>

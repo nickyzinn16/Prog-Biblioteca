@@ -1,9 +1,7 @@
-import livros
-import utilizadores
-import emprestimos
+from progs import livros, utilizadores, emprestimos
 
 def menu_principal():
-    if opcao == "1":
+    while True:
         print("\n")
         print("="*30)
         print("SISTEMA DE GESTÃO DE BIBLIOTECA")
@@ -18,16 +16,12 @@ def menu_principal():
 
         if opcao == "1":
             livros.menu_livros()
-
         elif opcao == "2":
             utilizadores.menu_utilizadores()
-
         elif opcao == "3":
             emprestimos.menu_emprestimos()
-
         elif opcao == "0":
             print("Programa terminado.")
             break
-
         else:
             print("Opção inválida!")

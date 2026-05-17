@@ -1,3 +1,5 @@
+from progs.database import conexao, cursor
+
 def menu_utilizadores():
     while True:
         print("\n")
@@ -14,25 +16,15 @@ def menu_utilizadores():
 
         if op == "1":
             menu_adicionar_utilizador()
-
         elif op == "2":
             listar_utilizadores()
-
         elif op == "3":
             remover_utilizador()
-
         elif op == "0":
             break
-
         else:
             print("Opção inválida!")
 
-
-# ============================================================================= #
-# ======================================= Opcao 1 ============================= #
-# ============================================================================= #
-funcionarios = []
-clientes = []
 
 def menu_adicionar_utilizador():
     while True:
@@ -44,43 +36,54 @@ def menu_adicionar_utilizador():
         op = input("Escolha: ")
 
         if op == "1":
-            adicionar_funcionario()
+            adicionar_utilizador("funcionario")
             break
-
         elif op == "2":
-            adicionar_cliente()
+            adicionar_utilizador("cliente")
             break
-
         elif op == "0":
             break
-
         else:
             print("Opção inválida!")
 
 
-def adicionar_funcionario():
-    print("\n === Adicionar Funcionario ===")
+def adicionar_utilizador(tipo):
+    print(f"\n === Adicionar {tipo.capitalize()} ===")
 
-    nome = input("Nome Completo: ")
-    identificacao = input("Bi: ")
-    data_nascimento = input("Data de Nascimento: ")
-    email = input("Email: ")
+    nome     = input("Nome Completo: ")
+    idade    = input("Idade: ")
+    email    = input("Email: ")
+    password = input("Password: ")
     telefone = input("Telefone: ")
-    endereco = input("Endereço: ")
 
-    funcionario = {
-        "nome": nome,
-        "id": identificacao,
-        "data_nascimento": data_nascimento,
-        "email": email,
-        "telefone": telefone,
-        "endereco": endereco
-    }
+    sql = "INSERT INTO utilizador (nome, idade, email, password, tipo_utilizador, data_registo, telefone) VALUES (%s, %s, %s, %s, %s, CURDATE(), %s)"
+    valores = (nome, idade, email, password, tipo, telefone)
 
-    funcionarios.append(funcionario)
-    print("Utilizador adicionado com sucesso.")
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print(f"{tipo.capitalize()} adicionado com sucesso!")
 
-# ============================================================================= #
-# ============================================================================= #
-# ============================================================================= #
 
+def listar_utilizadores():
+    print("\n=== Lista de Utilizadores ===")
+
+    cursor.execute("SELECT * FROM utilizador")
+    utilizadores = cursor.fetchall()
+
+    if not utilizadores:
+        print("Nenhum utilizador registado.")
+        return
+
+    for u in utilizadores:
+        print(f"\nID: {u[0]} | Nome: {u[1]} | Idade: {u[2]} | Email: {u[3]} | Tipo: {u[5]} | Telefone: {u[7]}")
+
+
+def remover_utilizador():
+    print("\n=== Remover Utilizador ===")
+
+    listar_utilizadores()
+    id_utilizador = input("\nID do utilizador a remover: ")
+
+    cursor.execute("DELETE FROM utilizador WHERE id_utilizador = %s", (id_utilizador,))
+    conexao.commit()
+    print("Utilizador removido com sucesso!")

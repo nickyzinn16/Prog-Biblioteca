@@ -1,4 +1,4 @@
-lista_livros = []
+from progs.database import conexao, cursor
 
 def menu_livros():
     while True:
@@ -16,64 +16,54 @@ def menu_livros():
 
         if op == "1":
             adicionar_livro()
-
         elif op == "2":
-            print("Listar livros")
-
+            listar_livros()
         elif op == "3":
-            print("Remover livro")
-
+            remover_livro()
         elif op == "0":
             break
-
         else:
             print("Opção inválida!")
 
 
-# ============================================================================= #
-# ======================================= Opcao 1 ============================= #
-# ============================================================================= #
-livro = []
 def adicionar_livro():
     print("\n=== Adicionar Novo Livro ===")
 
-    autores = input("Autor(es): ")
-    titulo = input("Título: ")
-    subtitulo = input("Subtítulo: ")
-    editora = input("Editora: ")
-    ano = input("Ano de Publicação: ")
-    edicao = input("Edição: ")
-    local = input("Local de Publicação: ")
-    paginas = input("Número de Páginas: ")
+    titulo    = input("Título: ")
+    autor     = input("Autor: ")
+    editora   = input("Editora: ")
+    ano       = input("Ano de Publicação: ")
     categoria = input("Categoria: ")
+    quantidade = input("Quantidade: ")
 
-    livro = {
-        "autores": autores,
-        "titulo": titulo,
-        "subtitulo": subtitulo,
-        "editora": editora,
-        "ano": ano,
-        "edicao": edicao,
-        "local": local,
-        "paginas": paginas,
-        "categoria": categoria
-    }
+    sql = "INSERT INTO livro (titulo, autor, editora, ano_publicacao, categoria, quantidade) VALUES (%s, %s, %s, %s, %s, %s)"
+    valores = (titulo, autor, editora, ano, categoria, quantidade)
 
-    lista_livros.append(livro)
-    print("Livro adicionado com sucesso")
-
-# ============================================================================= #
-# ============================================================================= #
-# ============================================================================= #
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print("Livro adicionado com sucesso!")
 
 
-# ============================================================================= #
-# ======================================= Opcao 2 ============================= #
-# ============================================================================= #
+def listar_livros():
+    print("\n=== Lista de Livros ===")
+
+    cursor.execute("SELECT * FROM livro")
+    livros = cursor.fetchall()
+
+    if not livros:
+        print("Nenhum livro registado.")
+        return
+
+    for livro in livros:
+        print(f"\nID: {livro[0]} | Título: {livro[1]} | Autor: {livro[2]} | Editora: {livro[3]} | Ano: {livro[4]} | Categoria: {livro[5]} | Quantidade: {livro[6]}")
 
 
+def remover_livro():
+    print("\n=== Remover Livro ===")
 
+    listar_livros()
+    id_livro = input("\nID do livro a remover: ")
 
-# ============================================================================= #
-# ======================================= Opcao 3 ============================= #
-# ============================================================================= #
+    cursor.execute("DELETE FROM livro WHERE id_livro = %s", (id_livro,))
+    conexao.commit()
+    print("Livro removido com sucesso!")

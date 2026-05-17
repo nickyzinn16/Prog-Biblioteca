@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../static/css/login.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
         <title>Login</title>
     </head>
     <body>
         <div class="caixaLogin">
-            <form id="loginform">
+            <form action="{{ url_for('login') }}" method="POST">
                 <h2>Entre na plataforma</h2>
+                {% if erro %}
+                    <p>{{ erro }}</p>
+                {% endif %}
                 <div class="campo">
-                    <label>Username</label>
-                    <input type="text" placeholder="Nome de Utilizador" required>
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="campo">
                     <label>Password</label>
-                    <input type="password" placeholder="Password do Utilizador" required>
+                    <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <button type="submit" class="btn-entrar">Iniciar Sessão</button>
-                <a href="cadastrar.html">Nao tenho conta</a>
+                <a href="{{ url_for('cadastrar') }}">Não tenho conta</a>
             </form>
         </div>
     </body>
