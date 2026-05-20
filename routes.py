@@ -24,36 +24,11 @@ def init_routes(app):
             if utilizador:
                 session["id"] = utilizador[0]
                 session["nome"] = utilizador[1]
-                session["tipo"] = utilizador[5]
-
-                if utilizador[5] == "funcionario":
-                    return redirect(url_for("dashboard_funcionario"))
-                else:
-                    return redirect(url_for("dashboard_cliente"))
+                return redirect(url_for("dashboard_funcionario"))
             else:
                 erro = "Email ou password incorretos!"
 
         return render_template("login.html", erro=erro)
-
-    @app.route("/cadastrar", methods=["GET", "POST"])
-    def cadastrar():
-        if request.method == "POST":
-            nome      = request.form["nome"]
-            idade     = request.form["idade"]
-            email     = request.form["email"]
-            password  = request.form["password"]
-            telefone  = request.form["telefone"]
-
-            con = connection()
-            cur = con.cursor()
-            cur.execute("INSERT INTO utilizador (nome, idade, email, password, tipo_utilizador, data_registo, telefone) VALUES (%s, %s, %s, %s, 'cliente', CURDATE(), %s)",
-                        (nome, idade, email, password, telefone))
-            con.commit()
-            cur.close()
-            con.close()
-            return redirect(url_for("login"))
-
-        return render_template("cadastrar.html")
 
     @app.route("/logout")
     def logout():
@@ -62,13 +37,13 @@ def init_routes(app):
 
     @app.route("/funcionario")
     def dashboard_funcionario():
-        if session.get("tipo") != "funcionario":
+        if not session.get("id"):
             return redirect(url_for("login"))
         return render_template("funcionario/dashboard.html")
 
     @app.route("/funcionario/livros")
     def func_livros():
-        if session.get("tipo") != "funcionario":
+        if not session.get("id"):
             return redirect(url_for("login"))
         con = connection()
         cur = con.cursor()
@@ -80,7 +55,7 @@ def init_routes(app):
 
     @app.route("/funcionario/livros/adicionar", methods=["GET", "POST"])
     def func_adicionar_livro():
-        if session.get("tipo") != "funcionario":
+        if not session.get("id"):
             return redirect(url_for("login"))
         if request.method == "POST":
             titulo     = request.form["titulo"]
@@ -101,7 +76,7 @@ def init_routes(app):
 
     @app.route("/funcionario/livros/remover/<int:id>")
     def func_remover_livro(id):
-        if session.get("tipo") != "funcionario":
+        if not session.get("id"):
             return redirect(url_for("login"))
         con = connection()
         cur = con.cursor()
@@ -110,12 +85,6 @@ def init_routes(app):
         cur.close()
         con.close()
         return redirect(url_for("func_livros"))
-
-    @app.route("/cliente")
-    def dashboard_cliente():
-        if not session.get("id"):
-            return redirect(url_for("login"))
-        return render_template("cliente/index.html")
 
     @app.route("/catalogo/<categoria>")
     def catalogo(categoria):

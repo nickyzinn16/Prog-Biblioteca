@@ -18,7 +18,6 @@ CREATE TABLE utilizador (
     idade           INT(10)         NOT NULL,
     email           VARCHAR(50)     NOT NULL UNIQUE,
     password        VARCHAR(255)    NOT NULL,
-    tipo_utilizador VARCHAR(20)     NOT NULL DEFAULT 'cliente',
     data_registo    DATE            DEFAULT NULL,
     telefone        VARCHAR(20)     DEFAULT NULL UNIQUE
 );
@@ -34,5 +33,5 @@ CREATE TABLE emprestimos (
     FOREIGN KEY (id_utilizador) REFERENCES utilizador(id_utilizador)
 );
 
-INSERT INTO utilizador (nome, idade, email, password, tipo_utilizador, data_registo, telefone)
-VALUES ('admin', 18, 'adminbiblioteca@gmail.com', '123456789', 'funcionario', '2026-05-17', '5920986');
+INSERT INTO utilizador (nome, idade, email, password, data_registo, telefone)
+VALUES ('admin', 18, 'adminbiblioteca@gmail.com', '123456789', '2026-05-17', '5920986');
