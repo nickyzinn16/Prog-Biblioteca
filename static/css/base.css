@@ -1,3 +1,7 @@
+* {
+    font-family: 'Playfair Display', serif;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -21,12 +25,12 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 60px;
+    padding: 5px 60px;
     background-color: #2D1E6A;
 }
 
 .logo img {
-    width: 60px;
+    width: 40px;
     height: auto;
     border-radius: 25%;
 }
@@ -162,4 +166,18 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9rem;
+}
+
+.btn-emprestar {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #2c2c6c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
 }

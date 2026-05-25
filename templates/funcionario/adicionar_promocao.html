@@ -2,10 +2,10 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Início - Funcionário</title>
+        <title>Adicionar Promoção</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/index.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/adicionar_catalogo.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -21,7 +21,7 @@
                         <li><a href="{{ url_for('dashboard_funcionario') }}" class="ativo">Início</a></li>
                         <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
                         <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
-                        <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('func_promocoes') }}" class="ativo">Promoções</a></li>
                         <li><a href="#">Empréstimos</a></li>
                         <li><a href="#">Relatórios</a></li>
                         <li class="user-menu">
@@ -39,14 +39,28 @@
         </header>
 
         <main class="main">
-            <h1 class="titulo">Painel de Funcionário</h1>
-            <div class="menu-grid">
-                <a href="{{ url_for('func_livros') }}" class="menu-card"><i class="fa-solid fa-book"></i><h3>Livros</h3></a>
-                <a href="{{ url_for('func_catalogos') }}" class="menu-card"><i class="fa-solid fa-list"></i><h3>Catálogos</h3></a>
-                <a href="{{ url_for('func_promocoes') }}" class="menu-card"><i class="fa-solid fa-percent"></i><h3>Promoções</h3></a>
-                <a href="#" class="menu-card"><i class="fa-solid fa-circle-arrow-left"></i><h3>Empréstimos</h3></a>
-                <a href="#" class="menu-card"><i class="fa-solid fa-chart-area"></i><h3>Relatórios</h3></a>
-            </div>
+            <h1 class="titulo">Adicionar Promoção</h1>
+            <form action="{{ url_for('func_adicionar_promocao') }}" method="POST">
+                <div class="campo">
+                    <label>Livro</label>
+                    <select name="id_livro" required>
+                        <option value="">Seleciona um livro</option>
+                        {% for livro in livros %}
+                        <option value="{{ livro[0] }}">{{ livro[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="campo">
+                    <label>Preço Original (CVE)</label>
+                    <input type="number" name="preco" placeholder="Ex: 2000" required>
+                </div>
+                <div class="campo">
+                    <label>Desconto (%)</label>
+                    <input type="number" name="desconto" placeholder="Ex: 20" min="1" max="100" required>
+                </div>
+                <button type="submit" class="btn-adicionar">Guardar</button>
+                <a href="{{ url_for('func_promocoes') }}">Cancelar</a>
+            </form>
         </main>
 
         <button id="btn-topo">↑</button>

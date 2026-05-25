@@ -2,7 +2,7 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Livros - Funcionário</title>
+        <title>Promoções - Funcionário</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/livros.css') }}">
@@ -19,9 +19,9 @@
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
-                        <li><a href="{{ url_for('func_livros') }}" class="ativo">Livros</a></li>
+                        <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
                         <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
-                        <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('func_promocoes') }}" class="ativo">Promoções</a></li>
                         <li><a href="#">Empréstimos</a></li>
                         <li><a href="#">Relatórios</a></li>
                         <li class="user-menu">
@@ -39,10 +39,10 @@
         </header>
 
         <main class="main">
-            <h1 class="titulo">Gestão de Livros</h1>
+            <h1 class="titulo">Promoções Ativas</h1>
 
-            <a href="{{ url_for('func_adicionar_livro') }}" class="btn-adicionar">
-                <i class="fa-solid fa-plus"></i> Adicionar Livro
+            <a href="{{ url_for('func_adicionar_promocao') }}" class="btn-adicionar">
+                <i class="fa-solid fa-plus"></i> Adicionar Promoção
             </a>
 
             <table class="tabela">
@@ -51,30 +51,28 @@
                         <th>ID</th>
                         <th>Título</th>
                         <th>Autor</th>
-                        <th>Editora</th>
-                        <th>Ano</th>
-                        <th>Categoria</th>
-                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Desconto</th>
+                        <th>Preço Final</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for livro in livros %}
+                    {% for p in promocoes %}
                     <tr>
-                        <td>{{ livro[0] }}</td>
-                        <td>{{ livro[1] }}</td>
-                        <td>{{ livro[2] }}</td>
-                        <td>{{ livro[3] }}</td>
-                        <td>{{ livro[4] }}</td>
-                        <td>{{ livro[5] }}</td>
-                        <td>{{ livro[6] }}</td>
+                        <td>{{ p[0] }}</td>
+                        <td>{{ p[1] }}</td>
+                        <td>{{ p[2] }}</td>
+                        <td>{{ p[7] }} CVE</td>
+                        <td>{{ p[8] }}%</td>
+                        <td>{{ p[7] - (p[7] * p[8] // 100) }} CVE</td>
                         <td>
-                            <a href="{{ url_for('func_remover_livro', id=livro[0]) }}" class="btn-remover">Remover</a>
+                            <a href="{{ url_for('func_remover_promocao', id=p[0]) }}" class="btn-remover">Remover</a>
                         </td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="8">Nenhum livro registado.</td>
+                        <td colspan="7">Nenhuma promoção ativa.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

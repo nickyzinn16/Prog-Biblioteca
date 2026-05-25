@@ -1,3 +1,6 @@
+* {
+    font-family: 'Playfair Display', serif;
+}
 
 body {
     margin: 0;
@@ -27,7 +30,7 @@ section {
 }
 
 .logo img {
-    width: 60px;
+    width: 40px;
     height: auto;
     border-radius: 25%;
 }
@@ -114,7 +117,6 @@ h2 {
     display: inline-block;
     cursor: pointer;
 }
-
 
 .sair-cliente {
     display: none;

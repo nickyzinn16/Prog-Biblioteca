@@ -2,10 +2,10 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Favoritos - Biblioteca</title>
+        <title>Promoções - Biblioteca</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/favorito.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/promocoes.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
@@ -21,67 +21,30 @@
                     <ul>
                         <li><a href="{{ url_for('index') }}">Início</a></li>
                         <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
-                        <li><a href="{{ url_for('favoritos') }}" class="ativo">Favoritos</a></li>
-                        <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
-                        <li><a href="{{ url_for('contactos') }}">Contacta-nos</a></li>
+                        <li><a href="{{ url_for('favoritos') }}">Favoritos</a></li>
+                        <li><a href="{{ url_for('promocoes') }}" class="ativo">Promoções</a></li>
                         <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
 
-        <section class="favoritos">
-            <h1 class="titulo"><i class="fa-solid fa-star"></i> Favoritos</h1>
-            <p class="descricao">Livros que adicionaste aos teus favoritos</p>
+        <section class="promocoes">
+            <h1 class="titulo"><i class="fa-solid fa-percent"></i> Promoções</h1>
+            <p class="descricao">Aproveita os melhores livros com desconto</p>
 
-            <div class="area-favoritos">
+            <div class="area-promocoes">
+                {% for livro in livros %}
                 <div class="card">
-                    <img src="{{ url_for('static', filename='images/capas/Exemplo.jpg') }}" alt="Livro">
-                    <h3>Os Alunos</h3>
-                    <p>Uma história de alguns alunos que desenvolveram um aplicativo.</p>
-                    <button><i class="fa-solid fa-cart-shopping"></i> Adicionar ao carrinho</button>
-                    <button>Remover <i class="fa-regular fa-heart"></i></button>
+                    <h3>{{ livro[1] }}</h3>
+                    <p>{{ livro[2] }} | {{ livro[3] }}</p>
+                    <p class="preco-antigo">{{ livro[9] }} CVE</p>
+                    <p class="preco-atual">{{ livro[9] - (livro[9] * livro[8] // 100) }} CVE</p>
+                    <span class="desconto">-{{ livro[8] }}%</span>
                 </div>
-
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/capas/Exemplo.jpg') }}" alt="Livro">
-                    <h3>Os Alunos</h3>
-                    <p>Uma história de alguns alunos que desenvolveram um aplicativo.</p>
-                    <button><i class="fa-solid fa-cart-shopping"></i> Adicionar ao carrinho</button>
-                    <button>Remover <i class="fa-regular fa-heart"></i></button>
-                </div>
-
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/capas/Exemplo.jpg') }}" alt="Livro">
-                    <h3>Os Alunos</h3>
-                    <p>Uma história de alguns alunos que desenvolveram um aplicativo.</p>
-                    <button><i class="fa-solid fa-cart-shopping"></i> Adicionar ao carrinho</button>
-                    <button>Remover <i class="fa-regular fa-heart"></i></button>
-                </div>
-
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/capas/Exemplo.jpg') }}" alt="Livro">
-                    <h3>Os Alunos</h3>
-                    <p>Uma história de alguns alunos que desenvolveram um aplicativo.</p>
-                    <button><i class="fa-solid fa-cart-shopping"></i> Adicionar ao carrinho</button>
-                    <button>Remover <i class="fa-regular fa-heart"></i></button>
-                </div>
-
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/capas/Exemplo.jpg') }}" alt="Livro">
-                    <h3>Os Alunos</h3>
-                    <p>Uma história de alguns alunos que desenvolveram um aplicativo.</p>
-                    <button><i class="fa-solid fa-cart-shopping"></i> Adicionar ao carrinho</button>
-                    <button>Remover <i class="fa-regular fa-heart"></i></button>
-                </div>
-
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/capas/Exemplo.jpg') }}" alt="Livro">
-                    <h3>Os Alunos</h3>
-                    <p>Uma história de alguns alunos que desenvolveram um aplicativo.</p>
-                    <button><i class="fa-solid fa-cart-shopping"></i> Adicionar ao carrinho</button>
-                    <button>Remover <i class="fa-regular fa-heart"></i></button>
-                </div>
+                {% else %}
+                <p>Nenhuma promoção disponível.</p>
+                {% endfor %}
             </div>
         </section>
 
@@ -104,7 +67,7 @@
                 </div>
                 <div class="endereco-contactos">
                     <h4>ENDEREÇO & CONTACTOS</h4>
-                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z/data=!3m1!4b1!4m6!3m5!1s0x94f1ea8cac2a09f:0xa657bfc8b3d856e2!8m2!3d16.8866125!4d-24.9888906!16s%2Fg%2F1pp2tw4r8?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Biblioteca Municipal do Mindelo</a></p>
+                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z" target="_blank">Biblioteca Municipal do Mindelo</a></p>
                     <p><a href="tel:9959295">+9959295</a></p>
                     <p><a href="mailto:biblioteca@gmail.com">biblioteca@gmail.com</a></p>
                 </div>
