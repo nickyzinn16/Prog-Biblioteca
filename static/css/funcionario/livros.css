@@ -1,0 +1,55 @@
+.main {
+    padding: 30px 40px;
+}
+
+.titulo {
+    font-size: 27px;
+    color: #2c2c6c;
+    margin-bottom: 20px;
+}
+
+.btn-adicionar {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #2c2c6c;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.tabela {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.tabela thead {
+    background-color: #2c2c6c;
+    color: white
+}
+
+.tabela thead th {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.tabela tbody tr {
+    border-bottom: 1px solid white;
+}
+
+.tabela tbody td {
+    padding: 12px 15px;
+    font-size: 15px;
+}
+
+.btn-remover {
+    padding: 6px 12px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    font-size: 17px;
+    text-decoration: none;
+}
