@@ -22,16 +22,5 @@ CREATE TABLE utilizador (
     telefone        VARCHAR(20)     DEFAULT NULL UNIQUE
 );
 
-CREATE TABLE emprestimos (
-    id_emprestimo   INT AUTO_INCREMENT PRIMARY KEY,
-    data_emprestimo DATE            NOT NULL,
-    data_devolucao  DATE            DEFAULT NULL,
-    estado          VARCHAR(20)     NOT NULL DEFAULT 'ativo',
-    id_livro        INT             NOT NULL,
-    id_utilizador   INT             NOT NULL,
-    FOREIGN KEY (id_livro)      REFERENCES livro(id_livro),
-    FOREIGN KEY (id_utilizador) REFERENCES utilizador(id_utilizador)
-);
-
 INSERT INTO utilizador (nome, idade, email, password, data_registo, telefone)
 VALUES ('admin', 18, 'adminbiblioteca@gmail.com', '123456789', '2026-05-17', '5920986');
