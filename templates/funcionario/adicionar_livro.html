@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Adicionar Livro</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/livros.css') }}">
+        <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="{{ url_for('dashboard_funcionario') }}">
+                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
+                    </a>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
+                        <li><a href="{{ url_for('func_livros') }}" class="ativo">Livros</a></li>
+                        <li><a href="#">Empréstimos</a></li>
+                        <li><a href="#">Relatórios</a></li>
+                        <li><a href="#">Utilizadores</a></li>
+                        <li class="user-menu">
+                            <a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a>
+                            <div class="sair-cliente">
+                                <p class="user-name">{{ session['nome'] }}</p>
+                                <a href="{{ url_for('logout') }}">Sair da conta</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <h1 class="titulo">Adicionar Livro</h1>
+            <form action="{{ url_for('func_adicionar_livro') }}" method="POST">
+                <div class="campo">
+                    <label>Título</label>
+                    <input type="text" name="titulo" placeholder="Título do livro" required>
+                </div>
+                <div class="campo">
+                    <label>Autor</label>
+                    <input type="text" name="autor" placeholder="Autor do livro" required>
+                </div>
+                <div class="campo">
+                    <label>Editora</label>
+                    <input type="text" name="editora" placeholder="Editora">
+                </div>
+                <div class="campo">
+                    <label>Ano de Publicação</label>
+                    <input type="number" name="ano" placeholder="Ex: 2023">
+                </div>
+                <div class="campo">
+                    <label>Categoria</label>
+                    <select name="categoria">
+                        <option value="comedia">Comédia</option>
+                        <option value="drama">Drama</option>
+                        <option value="fantasia">Fantasia</option>
+                        <option value="ficcao">Ficção</option>
+                        <option value="romance">Romance</option>
+                        <option value="terror">Terror</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="aventura">Aventura</option>
+                        <option value="misterio">Mistério</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label>Quantidade</label>
+                    <input type="number" name="quantidade" placeholder="Quantidade" required>
+                </div>
+                <button type="submit" class="btn-adicionar">Guardar</button>
+                <a href="{{ url_for('func_livros') }}">Cancelar</a>
+            </form>
+        </main>
+
+        <button id="btn-topo">↑</button>
+        <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
+    </body>
+</html>
