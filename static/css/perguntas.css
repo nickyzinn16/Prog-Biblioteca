@@ -1,0 +1,26 @@
+
+.faq h2 {
+    color: #2D1E6A;
+    margin-bottom: 25px;
+}
+
+
+.faq-item {
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background-color: #f5f7fa;
+    border-radius: 6px;
+}
+
+.pergunta {
+    margin: 0;
+    color: #2D1E6A;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.resposta {
+    margin-top: 8px;
+    color: #242323;
+    line-height: 1.5;
+}
