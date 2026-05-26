@@ -2,7 +2,7 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Empréstimos - Funcionário</title>
+        <title>Perguntas - Funcionário</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/livros.css') }}">
@@ -18,8 +18,8 @@
                         <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
                         <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
                         <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
-                        <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
-                        <li><a href="{{ url_for('func_emprestimos') }}" class="ativo">Empréstimos</a></li>
+                        <li><a href="{{ url_for('func_perguntas') }}" class="ativo">Perguntas</a></li>
+                        <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
                         <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
                         <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
                         <li class="user-menu"><a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a><div class="sair-cliente"><p class="user-name">{{ session['nome'] }}</p><a href="{{ url_for('logout') }}">Sair da conta</a></div></li>
@@ -29,16 +29,17 @@
         </header>
 
         <main class="main">
-            <h1 class="titulo">Empréstimos</h1>
+            <h1 class="titulo">Perguntas Frequentes</h1>
+            <a href="{{ url_for('func_adicionar_pergunta') }}" class="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar Pergunta</a>
             <table class="tabela">
                 <thead>
-                    <tr><th>ID</th><th>Livro</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Data Pedido</th><th>Data Devolução</th></tr>
+                    <tr><th>ID</th><th>Pergunta</th><th>Resposta</th><th>Ações</th></tr>
                 </thead>
                 <tbody>
-                    {% for e in emprestimos %}
-                    <tr><td>{{ e[0] }}</td><td>{{ e[1] }}</td><td>{{ e[2] }}</td><td>{{ e[3] }}</td><td>{{ e[4] }}</td><td>{{ e[5] }}</td><td>{{ e[6] }}</td></tr>
+                    {% for p in perguntas %}
+                    <tr><td>{{ p[0] }}</td><td>{{ p[1] }}</td><td>{{ p[2] }}</td><td><a href="{{ url_for('func_remover_pergunta', id=p[0]) }}" class="btn-remover">Remover</a></td></tr>
                     {% else %}
-                    <tr><td>Nenhum empréstimo registado.</td></tr>
+                    <tr><td>Nenhuma pergunta registada.</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

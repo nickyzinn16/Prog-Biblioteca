@@ -3,19 +3,6 @@
     text-align: center;
 }
 
-/* Titulo da pagina */
-.titulo {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #2D1E6A;
-}
-
-/* Descrição da pagina */
-.descricao {
-    margin-bottom: 40px;
-    color: #2D1E6A;
-}
-
 /* Área das Promoções */
 .area-promocoes {
     display: grid;
@@ -32,7 +19,7 @@
     border-radius: 12px;
     width: 320px;
     transition: 0.3s;
-    text-align: center; /* 🔥 garante tudo centrado */
+    text-align: center;
 }
 
 /* Hover */
@@ -97,8 +84,4 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.card button:hover {
-    background-color: #1f144a;
 }

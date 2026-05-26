@@ -11,28 +11,18 @@
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo">
-                    <a href="{{ url_for('dashboard_funcionario') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                </div>
+                <div class="logo"><a href="{{ url_for('dashboard_funcionario') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
                         <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
                         <li><a href="{{ url_for('func_catalogos') }}" class="ativo">Catálogos</a></li>
                         <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
-                        <li><a href="#">Empréstimos</a></li>
-                        <li><a href="#">Relatórios</a></li>
-                        <li class="user-menu">
-                            <a href="#" class="user-icon">
-                                <i class="fa-solid fa-user"></i>
-                            </a>
-                            <div class="sair-cliente">
-                                <p class="user-name">{{ session['nome'] }}</p>
-                                <a href="{{ url_for('logout') }}">Sair da conta</a>
-                            </div>
-                        </li>
+                        <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
+                        <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
+                        <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
+                        <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
+                        <li class="user-menu"><a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a><div class="sair-cliente"><p class="user-name">{{ session['nome'] }}</p><a href="{{ url_for('logout') }}">Sair da conta</a></div></li>
                     </ul>
                 </div>
             </nav>
@@ -40,41 +30,20 @@
 
         <main class="main">
             <h1 class="titulo">Gestão de Catálogos</h1>
-
-            <a href="{{ url_for('func_adicionar_catalogo') }}" class="btn-adicionar">
-                <i class="fa-solid fa-plus"></i> Adicionar Catálogo
-            </a>
-
+            <a href="{{ url_for('func_adicionar_catalogo') }}" class="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar Catálogo</a>
             <table class="tabela">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Imagem</th>
-                        <th>Ações</th>
-                    </tr>
+                    <tr><th>ID</th><th>Nome</th><th>Descrição</th><th>Imagem</th><th>Ações</th></tr>
                 </thead>
                 <tbody>
                     {% for catalogo in catalogos %}
-                    <tr>
-                        <td>{{ catalogo[0] }}</td>
-                        <td>{{ catalogo[1] }}</td>
-                        <td>{{ catalogo[2] }}</td>
-                        <td>{{ catalogo[3] }}</td>
-                        <td>
-                            <a href="{{ url_for('func_remover_catalogo', id=catalogo[0]) }}" class="btn-remover">Remover</a>
-                        </td>
-                    </tr>
+                    <tr><td>{{ catalogo[0] }}</td><td>{{ catalogo[1] }}</td><td>{{ catalogo[2] }}</td><td>{{ catalogo[3] }}</td><td><a href="{{ url_for('func_remover_catalogo', id=catalogo[0]) }}" class="btn-remover">Remover</a></td></tr>
                     {% else %}
-                    <tr>
-                        <td colspan="5">Nenhum catálogo registado.</td>
-                    </tr>
+                    <tr><td>Nenhum catálogo registado.</td></tr>
                     {% endfor %}
                 </tbody>
             </table>
         </main>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>

@@ -1,0 +1,32 @@
+.relatorios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.relatorio-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.relatorio-card i {
+    font-size: 40px;
+    color: #2c2c6c;
+    margin-bottom: 10px;
+}
+
+.relatorio-card h3 {
+    color: #2c2c6c;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.relatorio-card .numero {
+    font-size: 40px;
+    font-weight: bold;
+    color: #2c2c6c;
+}

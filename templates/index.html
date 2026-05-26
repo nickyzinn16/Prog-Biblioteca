@@ -12,11 +12,7 @@
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                </div>
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('index') }}" class="ativo">Início</a></li>
@@ -28,11 +24,6 @@
                 </div>
             </nav>
         </header>
-
-        <div class="pesquisar">
-            <input type="text" placeholder="Procurar Catalogos">
-            <button class="procurar">Procurar</button>
-        </div>
 
         <main class="conteudo">
             <section class="catalogo-grid">
@@ -48,12 +39,7 @@
 
         <footer class="footer">
             <div class="footer-container">
-                <div class="imagem-footer">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                    <p>BIBLIOTECA DO MINDELO</p>
-                </div>
+                <div class="imagem-footer"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a><p>BIBLIOTECA DO MINDELO</p></div>
                 <div class="info-uteis">
                     <h4>INFORMAÇÕES ÚTEIS</h4>
                     <ul>
@@ -82,7 +68,6 @@
                 <a href="{{ url_for('politicas') }}">Políticas e Privacidade</a>
             </div>
         </footer>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>

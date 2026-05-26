@@ -2,10 +2,10 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Empréstimos - Funcionário</title>
+        <title>Adicionar Pergunta - Funcionário</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/livros.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/form.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -18,8 +18,8 @@
                         <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
                         <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
                         <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
-                        <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
-                        <li><a href="{{ url_for('func_emprestimos') }}" class="ativo">Empréstimos</a></li>
+                        <li><a href="{{ url_for('func_perguntas') }}" class="ativo">Perguntas</a></li>
+                        <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
                         <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
                         <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
                         <li class="user-menu"><a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a><div class="sair-cliente"><p class="user-name">{{ session['nome'] }}</p><a href="{{ url_for('logout') }}">Sair da conta</a></div></li>
@@ -29,19 +29,13 @@
         </header>
 
         <main class="main">
-            <h1 class="titulo">Empréstimos</h1>
-            <table class="tabela">
-                <thead>
-                    <tr><th>ID</th><th>Livro</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Data Pedido</th><th>Data Devolução</th></tr>
-                </thead>
-                <tbody>
-                    {% for e in emprestimos %}
-                    <tr><td>{{ e[0] }}</td><td>{{ e[1] }}</td><td>{{ e[2] }}</td><td>{{ e[3] }}</td><td>{{ e[4] }}</td><td>{{ e[5] }}</td><td>{{ e[6] }}</td></tr>
-                    {% else %}
-                    <tr><td>Nenhum empréstimo registado.</td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <h1 class="titulo">Adicionar Pergunta</h1>
+            <form action="{{ url_for('func_adicionar_pergunta') }}" method="POST">
+                <div class="campo"><label>Pergunta</label><input type="text" name="pergunta" placeholder="Escreve a pergunta" required></div>
+                <div class="campo"><label>Resposta</label><input type="text" name="resposta" placeholder="Escreve a resposta" required></div>
+                <button type="submit" class="btn-adicionar">Guardar</button>
+                <a href="{{ url_for('func_perguntas') }}">Cancelar</a>
+            </form>
         </main>
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>

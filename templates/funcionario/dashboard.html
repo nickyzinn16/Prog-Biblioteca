@@ -11,28 +11,18 @@
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo">
-                    <a href="{{ url_for('dashboard_funcionario') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                </div>
+                <div class="logo"><a href="{{ url_for('dashboard_funcionario') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('dashboard_funcionario') }}" class="ativo">Início</a></li>
                         <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
                         <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
                         <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
-                        <li><a href="#">Empréstimos</a></li>
-                        <li><a href="#">Relatórios</a></li>
-                        <li class="user-menu">
-                            <a href="#" class="user-icon">
-                                <i class="fa-solid fa-user"></i>
-                            </a>
-                            <div class="sair-cliente">
-                                <p class="user-name">{{ session['nome'] }}</p>
-                                <a href="{{ url_for('logout') }}">Sair da conta</a>
-                            </div>
-                        </li>
+                        <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
+                        <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
+                        <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
+                        <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
+                        <li class="user-menu"><a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a><div class="sair-cliente"><p class="user-name">{{ session['nome'] }}</p><a href="{{ url_for('logout') }}">Sair da conta</a></div></li>
                     </ul>
                 </div>
             </nav>
@@ -44,11 +34,12 @@
                 <a href="{{ url_for('func_livros') }}" class="menu-card"><i class="fa-solid fa-book"></i><h3>Livros</h3></a>
                 <a href="{{ url_for('func_catalogos') }}" class="menu-card"><i class="fa-solid fa-list"></i><h3>Catálogos</h3></a>
                 <a href="{{ url_for('func_promocoes') }}" class="menu-card"><i class="fa-solid fa-percent"></i><h3>Promoções</h3></a>
-                <a href="#" class="menu-card"><i class="fa-solid fa-circle-arrow-left"></i><h3>Empréstimos</h3></a>
-                <a href="#" class="menu-card"><i class="fa-solid fa-chart-area"></i><h3>Relatórios</h3></a>
+                <a href="{{ url_for('func_perguntas') }}" class="menu-card"><i class="fa-solid fa-question-circle"></i><h3>Perguntas</h3></a>
+                <a href="{{ url_for('func_emprestimos') }}" class="menu-card"><i class="fa-solid fa-circle-arrow-left"></i><h3>Empréstimos</h3></a>
+                <a href="{{ url_for('func_compras') }}" class="menu-card"><i class="fa-solid fa-bag-shopping"></i><h3>Compras</h3></a>
+                <a href="{{ url_for('func_relatorios') }}" class="menu-card"><i class="fa-solid fa-chart-area"></i><h3>Relatórios</h3></a>
             </div>
         </main>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>

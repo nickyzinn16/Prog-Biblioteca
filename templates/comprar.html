@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Comprar Livro</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+        <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Início</a></li>
+                        <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
+                        <li><a href="{{ url_for('favoritos') }}">Favoritos</a></li>
+                        <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <h1 class="titulo">Comprar Livro</h1>
+            <p class="subtitulo">{{ livro[0] }}</p>
+            <p class="subtitulo">Preço: {{ livro[1] }} CVE</p>
+            <form action="{{ url_for('comprar', id_livro=id_livro) }}" method="POST">
+                <div class="campo"><label>Nome</label><input type="text" name="nome" placeholder="O teu nome completo" required></div>
+                <div class="campo"><label>Email</label><input type="email" name="email" placeholder="O teu email" required></div>
+                <div class="campo"><label>Telefone</label><input type="text" name="telefone" placeholder="O teu telefone"></div>
+                <button type="submit" class="btn-adicionar">Finalizar Compra</button>
+                <a href="{{ url_for('carrinho') }}">Cancelar</a>
+            </form>
+        </main>
+
+        <button id="btn-topo">↑</button>
+        <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
+    </body>
+</html>

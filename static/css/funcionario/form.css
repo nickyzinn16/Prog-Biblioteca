@@ -8,7 +8,7 @@
 
 .titulo {
     text-align: center;
-    color: #3b0066;
+    color: #241855;
     font-size: 23px;
 }
 
@@ -38,8 +38,15 @@ form {
     font-size: 15px;
 }
 
+.campo select {
+    padding: 12px 15px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
 .btn-adicionar {
-    background: purple;
+    background: #241855;
     color: white;
     border: none;
     padding: 14px;
@@ -52,7 +59,7 @@ form {
 form a {
     text-align: center;
     text-decoration: none;
-    color: purple;
+    color: #241855;
     font-weight: 600;
     margin-top: 5px;
 }

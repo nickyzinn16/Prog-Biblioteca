@@ -13,6 +13,3 @@ def connection():
         database=db_name,
         port=3306
     )
-
-conexao = connection()
-cursor = conexao.cursor()

@@ -12,11 +12,7 @@
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                </div>
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('index') }}">Início</a></li>
@@ -29,14 +25,29 @@
             </nav>
         </header>
 
+        <section class="carrinho">
+            <h1 class="titulo"><i class="fa-solid fa-cart-shopping"></i> Carrinho</h1>
+            <p class="descricao">Livros que adicionaste ao teu carrinho</p>
+            <div class="area-carrinho">
+                {% for livro in livros %}
+                <div class="card">
+                    <h3>{{ livro[1] }}</h3>
+                    <p>{{ livro[2] }} | {{ livro[3] }}</p>
+                    <p>Categoria: {{ livro[5] }}</p>
+                    <p>Preço: {{ livro[9] }} CVE</p>
+                    <a href="{{ url_for('emprestar', id_livro=livro[0]) }}" class="btn-emprestar"><i class="fa-solid fa-book"></i> Emprestar</a>
+                    <a href="{{ url_for('comprar', id_livro=livro[0]) }}" class="btn-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+                    <a href="{{ url_for('remover_carrinho', id_livro=livro[0]) }}" class="btn-remover-carrinho"><i class="fa-solid fa-trash"></i> Remover</a>
+                </div>
+                {% else %}
+                <p>Nenhum livro no carrinho.</p>
+                {% endfor %}
+            </div>
+        </section>
+
         <footer class="footer">
             <div class="footer-container">
-                <div class="imagem-footer">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                    <p>BIBLIOTECA DO MINDELO</p>
-                </div>
+                <div class="imagem-footer"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a><p>BIBLIOTECA DO MINDELO</p></div>
                 <div class="info-uteis">
                     <h4>INFORMAÇÕES ÚTEIS</h4>
                     <ul>
@@ -48,7 +59,7 @@
                 </div>
                 <div class="endereco-contactos">
                     <h4>ENDEREÇO & CONTACTOS</h4>
-                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z/data=!3m1!4b1!4m6!3m5!1s0x94f1ea8cac2a09f:0xa657bfc8b3d856e2!8m2!3d16.8866125!4d-24.9888906!16s%2Fg%2F1pp2tw4r8?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Biblioteca Municipal do Mindelo</a></p>
+                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z" target="_blank">Biblioteca Municipal do Mindelo</a></p>
                     <p><a href="tel:9959295">+9959295</a></p>
                     <p><a href="mailto:biblioteca@gmail.com">biblioteca@gmail.com</a></p>
                 </div>
@@ -65,7 +76,6 @@
                 <a href="{{ url_for('politicas') }}">Políticas e Privacidade</a>
             </div>
         </footer>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>

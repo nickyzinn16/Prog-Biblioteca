@@ -12,11 +12,7 @@
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                </div>
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('index') }}">Início</a></li>
@@ -32,16 +28,13 @@
         <section class="favoritos">
             <h1 class="titulo"><i class="fa-solid fa-star"></i> Favoritos</h1>
             <p class="descricao">Livros que adicionaste aos teus favoritos</p>
-
             <div class="area-favoritos">
                 {% for livro in livros %}
                 <div class="card">
                     <h3>{{ livro[1] }}</h3>
                     <p>{{ livro[2] }} | {{ livro[3] }} | {{ livro[4] }}</p>
                     <p>Categoria: {{ livro[5] }}</p>
-                    <a href="{{ url_for('remover_favorito', id_livro=livro[0]) }}" class="btn-remover-fav">
-                        Remover <i class="fa-regular fa-heart"></i>
-                    </a>
+                    <a href="{{ url_for('remover_favorito', id_livro=livro[0]) }}" class="btn-remover-fav">Remover <i class="fa-regular fa-heart"></i></a>
                 </div>
                 {% else %}
                 <p>Nenhum livro nos favoritos.</p>
@@ -51,12 +44,7 @@
 
         <footer class="footer">
             <div class="footer-container">
-                <div class="imagem-footer">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                    <p>BIBLIOTECA DO MINDELO</p>
-                </div>
+                <div class="imagem-footer"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a><p>BIBLIOTECA DO MINDELO</p></div>
                 <div class="info-uteis">
                     <h4>INFORMAÇÕES ÚTEIS</h4>
                     <ul>
@@ -85,7 +73,6 @@
                 <a href="{{ url_for('politicas') }}">Políticas e Privacidade</a>
             </div>
         </footer>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>

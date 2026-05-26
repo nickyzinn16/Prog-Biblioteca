@@ -2,37 +2,27 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Adicionar Promoção</title>
+        <title>Adicionar Promoção - Funcionário</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/adicionar_catalogo.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/form.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo">
-                    <a href="{{ url_for('dashboard_funcionario') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                </div>
+                <div class="logo"><a href="{{ url_for('dashboard_funcionario') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
-                        <li><a href="{{ url_for('dashboard_funcionario') }}" class="ativo">Início</a></li>
+                        <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
                         <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
                         <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
                         <li><a href="{{ url_for('func_promocoes') }}" class="ativo">Promoções</a></li>
-                        <li><a href="#">Empréstimos</a></li>
-                        <li><a href="#">Relatórios</a></li>
-                        <li class="user-menu">
-                            <a href="#" class="user-icon">
-                                <i class="fa-solid fa-user"></i>
-                            </a>
-                            <div class="sair-cliente">
-                                <p class="user-name">{{ session['nome'] }}</p>
-                                <a href="{{ url_for('logout') }}">Sair da conta</a>
-                            </div>
-                        </li>
+                        <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
+                        <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
+                        <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
+                        <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
+                        <li class="user-menu"><a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a><div class="sair-cliente"><p class="user-name">{{ session['nome'] }}</p><a href="{{ url_for('logout') }}">Sair da conta</a></div></li>
                     </ul>
                 </div>
             </nav>
@@ -45,24 +35,15 @@
                     <label>Livro</label>
                     <select name="id_livro" required>
                         <option value="">Seleciona um livro</option>
-                        {% for livro in livros %}
-                        <option value="{{ livro[0] }}">{{ livro[1] }}</option>
-                        {% endfor %}
+                        {% for livro in livros %}<option value="{{ livro[0] }}">{{ livro[1] }}</option>{% endfor %}
                     </select>
                 </div>
-                <div class="campo">
-                    <label>Preço Original (CVE)</label>
-                    <input type="number" name="preco" placeholder="Ex: 2000" required>
-                </div>
-                <div class="campo">
-                    <label>Desconto (%)</label>
-                    <input type="number" name="desconto" placeholder="Ex: 20" min="1" max="100" required>
-                </div>
+                <div class="campo"><label>Preço Original (CVE)</label><input type="number" name="preco" placeholder="Ex: 2000" required></div>
+                <div class="campo"><label>Desconto (%)</label><input type="number" name="desconto" placeholder="Ex: 20" min="1" max="100" required></div>
                 <button type="submit" class="btn-adicionar">Guardar</button>
                 <a href="{{ url_for('func_promocoes') }}">Cancelar</a>
             </form>
         </main>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>
