@@ -3,67 +3,67 @@ CREATE DATABASE biblioteca_db;
 USE biblioteca_db;
 
 CREATE TABLE livro (
-    id_livro        INT AUTO_INCREMENT PRIMARY KEY,
-    titulo          VARCHAR(100)    NOT NULL,
-    autor           VARCHAR(100)    NOT NULL,
-    editora         VARCHAR(100)    DEFAULT NULL,
-    ano_publicacao  INT(4)          DEFAULT NULL,
-    categoria       VARCHAR(50)     DEFAULT NULL,
-    quantidade      INT(10)         NOT NULL DEFAULT 1,
-    promocao        TINYINT(1)      DEFAULT 0,
-    desconto        INT(3)          DEFAULT 0,
-    preco           INT             DEFAULT 0
+    id_livro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    autor VARCHAR(100) NOT NULL,
+    editora VARCHAR(100) DEFAULT NULL,
+    ano_publicacao INT(4) DEFAULT NULL,
+    categoria VARCHAR(50) DEFAULT NULL,
+    quantidade INT(10) NOT NULL DEFAULT 1,
+    promocao TINYINT(1) DEFAULT 0,
+    desconto INT(3) DEFAULT 0,
+    preco INT DEFAULT 0
 );
 
 CREATE TABLE utilizador (
-    id_utilizador   INT AUTO_INCREMENT PRIMARY KEY,
-    nome            VARCHAR(100)    NOT NULL,
-    idade           INT(10)         NOT NULL,
-    email           VARCHAR(50)     NOT NULL UNIQUE,
-    password        VARCHAR(255)    NOT NULL,
-    data_registo    DATE            DEFAULT NULL,
-    telefone        VARCHAR(20)     DEFAULT NULL UNIQUE
+    id_utilizador INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    idade INT(10) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    data_registo DATE DEFAULT NULL,
+    telefone VARCHAR(20) DEFAULT NULL UNIQUE
 );
 
 CREATE TABLE catalogo (
-    id_catalogo     INT AUTO_INCREMENT PRIMARY KEY,
-    nome            VARCHAR(50)     NOT NULL,
-    descricao       VARCHAR(255)    DEFAULT NULL,
-    imagem          VARCHAR(100)    DEFAULT NULL
+    id_catalogo INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    descricao VARCHAR(255) DEFAULT NULL,
+    imagem VARCHAR(100) DEFAULT NULL
 );
 
 CREATE TABLE emprestimos_pedidos (
-    id_emprestimo       INT AUTO_INCREMENT PRIMARY KEY,
-    id_livro            INT NOT NULL,
-    nome_cliente        VARCHAR(100) NOT NULL,
-    email_cliente       VARCHAR(100) NOT NULL,
-    telefone_cliente    VARCHAR(20) DEFAULT NULL,
-    data_pedido         DATE NOT NULL,
-    data_devolucao      DATE DEFAULT NULL,
+    id_emprestimo INT AUTO_INCREMENT PRIMARY KEY,
+    id_livro INT NOT NULL,
+    nome_cliente VARCHAR(100) NOT NULL,
+    email_cliente VARCHAR(100) NOT NULL,
+    telefone_cliente VARCHAR(20) DEFAULT NULL,
+    data_pedido DATE NOT NULL,
+    data_devolucao DATE DEFAULT NULL,
     FOREIGN KEY (id_livro) REFERENCES livro(id_livro)
 );
 
 CREATE TABLE compras (
-    id_compra           INT AUTO_INCREMENT PRIMARY KEY,
-    id_livro            INT NOT NULL,
-    nome_cliente        VARCHAR(100) NOT NULL,
-    email_cliente       VARCHAR(100) NOT NULL,
-    telefone_cliente    VARCHAR(20) DEFAULT NULL,
-    data_compra         DATE NOT NULL,
+    id_compra INT AUTO_INCREMENT PRIMARY KEY,
+    id_livro INT NOT NULL,
+    nome_cliente VARCHAR(100) NOT NULL,
+    email_cliente VARCHAR(100) NOT NULL,
+    telefone_cliente VARCHAR(20) DEFAULT NULL,
+    data_compra DATE NOT NULL,
     FOREIGN KEY (id_livro) REFERENCES livro(id_livro)
 );
 
 CREATE TABLE perguntas (
-    id_pergunta     INT AUTO_INCREMENT PRIMARY KEY,
-    pergunta        VARCHAR(500)    NOT NULL,
-    resposta        TEXT            NOT NULL
+    id_pergunta INT AUTO_INCREMENT PRIMARY KEY,
+    pergunta VARCHAR(500) NOT NULL,
+    resposta TEXT NOT NULL
 );
 
 CREATE TABLE favoritos (
-    id_favorito     INT AUTO_INCREMENT PRIMARY KEY,
-    id_utilizador   INT NOT NULL,
-    id_livro        INT NOT NULL,
-    data_adicao     DATE DEFAULT NULL,
+    id_favorito INT AUTO_INCREMENT PRIMARY KEY,
+    id_utilizador INT NOT NULL,
+    id_livro INT NOT NULL,
+    data_adicao DATE DEFAULT NULL,
     FOREIGN KEY (id_utilizador) REFERENCES utilizador(id_utilizador),
     FOREIGN KEY (id_livro) REFERENCES livro(id_livro)
 );
