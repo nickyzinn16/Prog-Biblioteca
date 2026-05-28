@@ -2,21 +2,21 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Início - Funcionário</title>
+        <title>Promoções - Funcionário</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/menu.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/index.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/livros.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <aside class="sidebar">
             <div class="logo"><a href="{{ url_for('dashboard_funcionario') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
             <ul>
-                <li><a href="{{ url_for('dashboard_funcionario') }}" class="ativo">Início</a></li>
+                <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
                 <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
                 <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
-                <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
+                <li><a href="{{ url_for('func_promocoes') }}" class="ativo">Promoções</a></li>
                 <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
                 <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
                 <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
@@ -29,16 +29,20 @@
         </aside>
 
         <main class="main-content">
-            <h1 class="titulo">Painel de Funcionário</h1>
-            <div class="menu-grid">
-                <a href="{{ url_for('func_livros') }}" class="menu-card"><i class="fa-solid fa-book"></i><h3>Livros</h3></a>
-                <a href="{{ url_for('func_catalogos') }}" class="menu-card"><i class="fa-solid fa-list"></i><h3>Catálogos</h3></a>
-                <a href="{{ url_for('func_promocoes') }}" class="menu-card"><i class="fa-solid fa-percent"></i><h3>Promoções</h3></a>
-                <a href="{{ url_for('func_perguntas') }}" class="menu-card"><i class="fa-solid fa-question-circle"></i><h3>Perguntas</h3></a>
-                <a href="{{ url_for('func_emprestimos') }}" class="menu-card"><i class="fa-solid fa-circle-arrow-left"></i><h3>Empréstimos</h3></a>
-                <a href="{{ url_for('func_compras') }}" class="menu-card"><i class="fa-solid fa-bag-shopping"></i><h3>Compras</h3></a>
-                <a href="{{ url_for('func_relatorios') }}" class="menu-card"><i class="fa-solid fa-chart-area"></i><h3>Relatórios</h3></a>
-            </div>
+            <h1 class="titulo">Promoções Ativas</h1>
+            <a href="{{ url_for('func_adicionar_promocao') }}" class="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar Promoção</a>
+            <table class="tabela">
+                <thead>
+                    <tr><th>ID</th><th>Título</th><th>Autor</th><th>Preço</th><th>Desconto</th><th>Preço Final</th><th>Ações</th></tr>
+                </thead>
+                <tbody>
+                    {% for p in promocoes %}
+                    <tr><td>{{ p[0] }}</td><td>{{ p[1] }}</td><td>{{ p[2] }}</td><td>{{ p[9] }} CVE</td><td>{{ p[8] }}%</td><td>{{ p[9] - (p[9] * p[8] // 100) }} CVE</td><td><a href="{{ url_for('func_remover_promocao', id=p[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover esta promoção?')">Remover</a></td></tr>
+                    {% else %}
+                    <tr><td>Nenhuma promoção ativa.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </main>
 
         <button id="btn-topo">↑</button>

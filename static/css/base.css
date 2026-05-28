@@ -1,3 +1,7 @@
+* {
+    font-family: 'Playfair Display', serif;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -21,12 +25,12 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 60px;
+    padding: 5px 60px;
     background-color: #2D1E6A;
 }
 
 .logo img {
-    width: 60px;
+    width: 40px;
     height: auto;
     border-radius: 25%;
 }
@@ -130,36 +134,48 @@ h2 {
 }
 
 .info h2 {
-    font-size: 1.2rem;
+    font-size: 20px;
     color: #2c2c6c;
     margin-bottom: 8px;
 }
 
 .info p {
-    font-size: 0.9rem;
+    font-size: 20px;
     color: darkgrey;
 }
 
-.pesquisar {
-    display: flex;
-    gap: 10px;
-    padding: 20px 40px;
-}
-
-.pesquisar input {
-    padding: 8px 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    width: 300px;
-}
-
-.pesquisar button {
-    padding: 8px 20px;
+.btn-favorito {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
     background-color: #2c2c6c;
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.btn-carrinho {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background-color: #2c2c6c;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.titulo {
+    font-size: 38px;
+    margin-bottom: 10px;
+    color: #2D1E6A;
+}
+
+.descricao {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: #2D1E6A;
 }

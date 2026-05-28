@@ -3,106 +3,43 @@
     <head>
         <meta charset="utf-8">
         <title>Início - Biblioteca</title>
-            <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                </div>
-
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('index') }}" class="ativo">Início</a></li>
                         <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
                         <li><a href="{{ url_for('favoritos') }}">Favoritos</a></li>
                         <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
-                        <li><a href="{{ url_for('contactos') }}">Contacta-nos</a></li>
                         <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
 
-        <div class="pesquisar">
-            <input type="text" placeholder="Procurar Catalogos">
-            <button class="procurar">Procurar</button>
-        </div>
-
         <main class="conteudo">
             <section class="catalogo-grid">
-                <a href="{{ url_for('catalogo', categoria='comedia') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/comedia.jpg') }}" alt="Comédia">
-                    <h3>COMÉDIA</h3>
-                    <p>Histórias leves e divertidas que vão fazer-te rir do início ao fim.</p>
+                {% for catalogo in catalogos %}
+                <a href="{{ url_for('catalogo', categoria=catalogo[1]) }}" class="catalogo-item">
+                    <img src="{{ url_for('static', filename='images/' + catalogo[3]) }}" alt="{{ catalogo[1] }}">
+                    <h3>{{ catalogo[1]|upper }}</h3>
+                    <p>{{ catalogo[2] }}</p>
                 </a>
-
-                <a href="{{ url_for('catalogo', categoria='drama') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/drama.jpg') }}" alt="Drama">
-                    <h3>DRAMA</h3>
-                    <p>Narrativas intensas e emocionantes que exploram a vida e os seus desafios.</p>
-                </a>
-
-                <a href="{{ url_for('catalogo', categoria='fantasia') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/fantasia.webp') }}" alt="Fantasia">
-                    <h3>FANTASIA</h3>
-                    <p>Mundos mágicos e aventuras épicas além da realidade.</p>
-                </a>
-
-                <a href="{{ url_for('catalogo', categoria='ficcao') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/ficcao.jpg') }}" alt="Ficção">
-                    <h3>FICÇÃO</h3>
-                    <p>Histórias criativas que te levam a realidades imaginárias e surpreendentes.</p>
-                </a>
-
-                <a href="{{ url_for('catalogo', categoria='romance') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/romance.webp') }}" alt="Romance">
-                    <h3>ROMANCE</h3>
-                    <p>Histórias de amor, emoções e relações que tocam o coração.</p>
-                </a>
-
-                <a href="{{ url_for('catalogo', categoria='terror') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/terror.jpg') }}" alt="Terror">
-                    <h3>TERROR</h3>
-                    <p>Histórias assustadoras que vão pôr os teus nervos à prova.</p>
-                </a>
-
-                <a href="{{ url_for('catalogo', categoria='thriller') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/thriller.webp') }}" alt="Thriller">
-                    <h3>THRILLER</h3>
-                    <p>Suspense e mistério que te mantêm preso até à última página.</p>
-                </a>
-
-                <a href="{{ url_for('catalogo', categoria='aventura') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/aventura.jpg') }}" alt="Aventura">
-                    <h3>AVENTURA</h3>
-                    <p>Histórias cheias de ação, exploração e desafios emocionantes.</p>
-                </a>
-
-                <a href="{{ url_for('catalogo', categoria='misterio') }}" class="catalogo-item">
-                    <img src="{{ url_for('static', filename='images/misterio.jpg') }}" alt="Mistério">
-                    <h3>MISTÉRIO</h3>
-                    <p>Enigmas e segredos que te fazem pensar até ao último detalhe.</p>
-                </a>
+                {% endfor %}
             </section>
         </main>
 
         <footer class="footer">
             <div class="footer-container">
-                <div class="imagem-footer">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
-                    <p>BIBLIOTECA DO MINDELO</p>
-                </div>
-
+                <div class="imagem-footer"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a><p>BIBLIOTECA DO MINDELO</p></div>
                 <div class="info-uteis">
                     <h4>INFORMAÇÕES ÚTEIS</h4>
                     <ul>
@@ -112,14 +49,12 @@
                         <li><a href="{{ url_for('perguntas') }}">Perguntas frequentes (FAQ)</a></li>
                     </ul>
                 </div>
-
                 <div class="endereco-contactos">
                     <h4>ENDEREÇO & CONTACTOS</h4>
-                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z/data=!3m1!4b1!4m6!3m5!1s0x94f1ea8cac2a09f:0xa657bfc8b3d856e2!8m2!3d16.8866125!4d-24.9888906!16s%2Fg%2F1pp2tw4r8?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Biblioteca Municipal do Mindelo</a></p>
+                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z" target="_blank">Biblioteca Municipal do Mindelo</a></p>
                     <p><a href="tel:9959295">+9959295</a></p>
-                    <p><a href="mailto:biblioteca@gmail.com">biblioteca@gmail.com</a></p>   
+                    <p><a href="mailto:biblioteca@gmail.com">biblioteca@gmail.com</a></p>
                 </div>
-
                 <div class="redes-container">
                     <h4>SIGA A BIBLIOTECA NAS REDES SOCIAIS</h4>
                     <div class="redes-sociais">
@@ -127,18 +62,13 @@
                         <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
                     </div>
                 </div>
-
             </div>
-
             <div class="footer-bottom">
                 <p>© 2026 BIBLIOTECA DO MINDELO - Todos os direitos reservados</p>
                 <a href="{{ url_for('politicas') }}">Políticas e Privacidade</a>
             </div>
-
         </footer>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
-
     </body>
 </html>

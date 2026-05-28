@@ -1,88 +1,17 @@
+* {
+    font-family: 'Playfair Display', serif;
+}
 
 body {
     margin: 0;
     padding: 0;
-    padding-top: 80px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #EAECE7;
+    display: flex;
 }
 
 section {
     padding: 30px 80px;
-}
-
-.header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 10;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 60px;
-    background-color: #2D1E6A;
-}
-
-.logo img {
-    width: 60px;
-    height: auto;
-    border-radius: 25%;
-}
-
-.menu ul {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    position: relative;
-    transition: 0.3s;
-}
-
-.menu ul li a:hover {
-    color: #ffc107;
-}
-
-.menu ul li a.ativo {
-    color: #ffc107;
-}
-
-.menu ul li a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background-color: #ffc107;
-    left: 0;
-    bottom: -5px;
-    transition: 0.3s;
-}
-
-.menu ul li a:hover::after {
-    width: 100%;
-}
-
-.navbar .btn-login {
-    background-color: #ffc107;
-    color: #0a2c66;
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.navbar .btn-login:hover {
-    color: #0a2c66;
 }
 
 #btn-topo {
@@ -103,49 +32,111 @@ h2 {
     margin-bottom: 20px;
 }
 
-.user-menu {
-    position: relative;
+.titulo {
+    font-size: 27px;
+    color: #2c2c6c;
+    margin-bottom: 20px;
 }
 
-.user-icon {
-    color: white;
-    font-size: 18px;
-    padding: 10px;
+.btn-adicionar {
     display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #2c2c6c;
+    color: white;
+    border-radius: 5px;
+    font-size: 17px;
+    text-decoration: none;
     cursor: pointer;
 }
 
-
-.sair-cliente {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 40px;
-    background: white;
-    min-width: 140px;
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.sair-cliente p {
-    margin: 0;
-    padding: 10px;
-    background: #2D1E6A;
+.btn-remover {
+    padding: 6px 12px;
+    background-color: red;
     color: white;
-    font-weight: bold;
+    border-radius: 5px;
     font-size: 17px;
-}
-
-.sair-cliente a {
-    display: block;
-    padding: 10px;
     text-decoration: none;
-    color: black;
-    background: #2D1E6A;
-    transition: 0.2s;
+    cursor: pointer;
 }
 
-.user-menu:hover .sair-cliente {
-    display: block;
+.tabela {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.tabela thead {
+    background-color: #2c2c6c;
+    color: white;
+}
+
+.tabela thead th {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.tabela tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+.tabela tbody td {
+    padding: 12px 15px;
+    font-size: 15px;
+}
+
+.main-content {
+    margin-left: 220px;
+    padding: 30px 40px;
+    width: 100%;
+}
+
+.main-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: black;
+    font-size: 15px;
+}
+
+.campo input {
+    padding: 12px 15px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.campo select {
+    padding: 12px 15px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+form a {
+    text-align: center;
+    text-decoration: none;
+    color: #241855;
+    font-weight: 600;
+    margin-top: 5px;
 }

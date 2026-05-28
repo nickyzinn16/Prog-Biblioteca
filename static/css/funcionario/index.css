@@ -19,14 +19,21 @@
 .menu-card {
     background: white;
     padding: 30px;
-    text-align: center;
     border-radius: 10px;
     text-decoration: none;
     color: #2D1E6A;
     transition: 0.3s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
 }
 
 .menu-card i {
     font-size: 30px;
-    margin-bottom: 10px;
+}
+
+.menu-card h3 {
+    margin: 0;
 }

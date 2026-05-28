@@ -5,7 +5,6 @@
         <title>Fantasia - Biblioteca</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/catalogos/fantasia.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
@@ -13,9 +12,7 @@
         <header class="header">
             <nav class="navbar">
                 <div class="logo">
-                    <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
-                    </a>
+                    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a>
                 </div>
                 <div class="menu">
                     <ul>
@@ -23,31 +20,26 @@
                         <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
                         <li><a href="{{ url_for('favoritos') }}">Favoritos</a></li>
                         <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
-                        <li><a href="{{ url_for('contactos') }}">Contacta-nos</a></li>
                         <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
 
-        <div class="pesquisar">
-            <input type="text" placeholder="Procurar Livros">
-            <button class="procurar">Procurar</button>
-        </div>
-
         <div class="conteudo-catalogo">
             {% for livro in livros %}
             <div class="livro">
-                <img src="{{ url_for('static', filename='images/fantasia.webp') }}" alt="{{ livro[1] }}">
+                <img src="{{ url_for('static', filename='images/' + imagem_catalogo) }}" alt="{{ livro[1] }}">
                 <div class="info">
                     <h2>{{ livro[1] }}</h2>
                     <p>{{ livro[2] }} | {{ livro[3] }} | {{ livro[4] }}</p>
+                    <a href="{{ url_for('adicionar_favorito', id_livro=livro[0]) }}" class="btn-favorito"><i class="fa-solid fa-heart"></i> Adicionar aos Favoritos</a>
+                    <a href="{{ url_for('adicionar_carrinho', id_livro=livro[0]) }}" class="btn-carrinho"><i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho</a>
                 </div>
             </div>
             {% else %}
             <p>Nenhum livro disponível nesta categoria.</p>
             {% endfor %}
         </div>
-
     </body>
 </html>

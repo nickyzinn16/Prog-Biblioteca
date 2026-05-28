@@ -1,0 +1,65 @@
+.main {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+}
+
+.titulo {
+    text-align: center;
+    color: #241855;
+    font-size: 23px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: black;
+    font-size: 15px;
+}
+
+.campo input {
+    padding: 12px 15px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.campo select {
+    padding: 12px 15px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.btn-adicionar {
+    background: #241855;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form a {
+    text-align: center;
+    text-decoration: none;
+    color: #241855;
+    font-weight: 600;
+    margin-top: 5px;
+}
