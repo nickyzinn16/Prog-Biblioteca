@@ -5,39 +5,43 @@
         <title>Adicionar Catálogo - Funcionário</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/menu.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/form.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <header class="header">
-            <nav class="navbar">
-                <div class="logo"><a href="{{ url_for('dashboard_funcionario') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
-                <div class="menu">
-                    <ul>
-                        <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
-                        <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
-                        <li><a href="{{ url_for('func_catalogos') }}" class="ativo">Catálogos</a></li>
-                        <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
-                        <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
-                        <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
-                        <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
-                        <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
-                        <li class="user-menu"><a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a><div class="sair-cliente"><p class="user-name">{{ session['nome'] }}</p><a href="{{ url_for('logout') }}">Sair da conta</a></div></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <aside class="sidebar">
+            <div class="logo"><a href="{{ url_for('dashboard_funcionario') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
+            <ul>
+                <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
+                <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
+                <li><a href="{{ url_for('func_catalogos') }}" class="ativo">Catálogos</a></li>
+                <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
+                <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
+                <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
+                <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
+                <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
+            </ul>
+            <div class="user-menu">
+                <p>{{ session['nome'] }}</p>
+                <a href="{{ url_for('logout') }}">Sair da conta</a>
+            </div>
+        </aside>
 
-        <main class="main">
+        <main class="main-content">
             <h1 class="titulo">Adicionar Catálogo</h1>
-            <form action="{{ url_for('func_adicionar_catalogo') }}" method="POST">
+            {% if erro %}
+            <p>{{ erro }}</p>
+            {% endif %}
+            <form action="{{ url_for('func_adicionar_catalogo') }}" method="POST" enctype="multipart/form-data">
                 <div class="campo"><label>Nome</label><input type="text" name="nome" placeholder="Ex: comedia" required></div>
                 <div class="campo"><label>Descrição</label><input type="text" name="descricao" placeholder="Descrição do catálogo" required></div>
-                <div class="campo"><label>Imagem</label><input type="text" name="imagem" placeholder="Ex: comedia.jpg"></div>
+                <div class="campo"><label>Imagem</label><input type="file" name="imagem" accept=".jpg,.jpeg,.png,.gif,.webp" required></div>
                 <button type="submit" class="btn-adicionar">Guardar</button>
                 <a href="{{ url_for('func_catalogos') }}">Cancelar</a>
             </form>
         </main>
+
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>

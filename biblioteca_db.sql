@@ -72,15 +72,15 @@ INSERT INTO utilizador (nome, idade, email, password, data_registo, telefone)
 VALUES ('admin', 18, 'adminbiblioteca@gmail.com', '123456789', '2026-05-17', '5920986');
 
 INSERT INTO catalogo (nome, descricao, imagem) VALUES
-('comedia',  'Histórias leves e divertidas que vão fazer-te rir do início ao fim.', 'comedia.jpg'),
-('drama',    'Narrativas intensas e emocionantes que exploram a vida e os seus desafios.', 'drama.jpg'),
-('fantasia', 'Mundos mágicos e aventuras épicas além da realidade.', 'fantasia.webp'),
-('ficcao',   'Histórias criativas que te levam a realidades imaginárias e surpreendentes.', 'ficcao.jpg'),
-('romance',  'Histórias de amor, emoções e relações que tocam o coração.', 'romance.webp'),
-('terror',   'Histórias assustadoras que vão pôr os teus nervos à prova.', 'terror.jpg'),
-('thriller', 'Suspense e mistério que te mantêm preso até à última página.', 'thriller.webp'),
-('aventura', 'Histórias cheias de ação, exploração e desafios emocionantes.', 'aventura.jpg'),
-('misterio', 'Enigmas e segredos que te fazem pensar até ao último detalhe.', 'misterio.jpg');
+('comedia',  'Histórias leves e divertidas que vão fazer-te rir do início ao fim.', 'Catalogo - Comedia.png'),
+('drama',    'Narrativas intensas e emocionantes que exploram a vida e os seus desafios.', 'Catalogo - Drama.png'),
+('fantasia', 'Mundos mágicos e aventuras épicas além da realidade.', 'Catalogo - Fantasia.png'),
+('ficcao',   'Histórias criativas que te levam a realidades imaginárias e surpreendentes.', 'Catalogo - Ficcao.png'),
+('romance',  'Histórias de amor, emoções e relações que tocam o coração.', 'Catalogo - Romance.png'),
+('terror',   'Histórias assustadoras que vão pôr os teus nervos à prova.', 'Catalogo - Terror.png'),
+('thriller', 'Suspense e mistério que te mantêm preso até à última página.', 'Catalogo - Thriller.png'),
+('aventura', 'Histórias cheias de ação, exploração e desafios emocionantes.', 'Catalogo - Aventura.png'),
+('misterio', 'Enigmas e segredos que te fazem pensar até ao último detalhe.', 'Catalogo - Misterio.png');
 
 INSERT INTO perguntas (pergunta, resposta) VALUES
 ('Como faço para emprestar um livro?', 'Para emprestar um livro, basta dirigir-se à biblioteca com o seu cartão de leitor e solicitar o livro ao funcionário.'),

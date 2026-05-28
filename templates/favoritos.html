@@ -32,8 +32,10 @@
                 {% for livro in livros %}
                 <div class="card">
                     <h3>{{ livro[1] }}</h3>
-                    <p>{{ livro[2] }} | {{ livro[3] }} | {{ livro[4] }}</p>
-                    <p>Categoria: {{ livro[5] }}</p>
+                    <p><strong>Autor:</strong> {{ livro[2] }}</p>
+                    <p><strong>Editora:</strong> {{ livro[3] }}</p>
+                    <p><strong>Ano:</strong> {{ livro[4] }}</p>
+                    <p><strong>Categoria:</strong> {{ livro[5] }}</p>
                     <a href="{{ url_for('remover_favorito', id_livro=livro[0]) }}" class="btn-remover-fav">Remover <i class="fa-regular fa-heart"></i></a>
                 </div>
                 {% else %}

@@ -1,5 +1,8 @@
 from flask import render_template, request, redirect, url_for, session
 from progs.database import connection
+from datetime import date
+import os
+import time
 
 def init_routes(app):
 
@@ -25,9 +28,12 @@ def init_routes(app):
         cur = con.cursor()
         cur.execute("SELECT * FROM livro WHERE categoria = %s", (categoria,))
         livros = cur.fetchall()
+        cur.execute("SELECT imagem FROM catalogo WHERE nome = %s", (categoria,))
+        cat = cur.fetchone()
+        imagem_catalogo = cat[0] if cat else ''
         cur.close()
         con.close()
-        return render_template(f"catalogos/{categoria}.html", livros=livros)
+        return render_template(f"catalogos/{categoria}.html", livros=livros, imagem_catalogo=imagem_catalogo)
 
     @app.route("/promocoes")
     def promocoes():
@@ -265,7 +271,13 @@ def init_routes(app):
             cur.close()
             con.close()
             return redirect(url_for("func_livros"))
-        return render_template("funcionario/adicionar_livro.html")
+        con = connection()
+        cur = con.cursor()
+        cur.execute("SELECT nome FROM catalogo")
+        catalogos = cur.fetchall()
+        cur.close()
+        con.close()
+        return render_template("funcionario/adicionar_livro.html", catalogos=catalogos)
 
     @app.route("/funcionario/livros/remover/<int:id>")
     def func_remover_livro(id):
@@ -306,15 +318,85 @@ def init_routes(app):
         if request.method == "POST":
             nome = request.form["nome"]
             descricao = request.form["descricao"]
-            imagem = request.form["imagem"]
+            ficheiro = request.files["imagem"]
+
+            if not ficheiro or ficheiro.filename == '':
+                return render_template("funcionario/adicionar_catalogo.html", erro="Nenhum ficheiro selecionado.")
+
+            nome_ficheiro = ficheiro.filename
+            extensao = nome_ficheiro.rsplit('.', 1)[-1].lower()
+            extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp']
+
+            if extensao not in extensoes_permitidas:
+                return render_template("funcionario/adicionar_catalogo.html", erro="Formato não suportado. Use: jpg, jpeg, png, gif ou webp.")
+
+            novo_nome = str(int(time.time())) + '_' + nome_ficheiro
+            pasta_imagens = os.path.join(app.root_path, 'static', 'images')
+            os.makedirs(pasta_imagens, exist_ok=True)
+            ficheiro.save(os.path.join(pasta_imagens, novo_nome))
+
             con = connection()
             cur = con.cursor()
-            cur.execute("INSERT INTO catalogo (nome, descricao, imagem) VALUES (%s, %s, %s)", (nome, descricao, imagem))
+            cur.execute("INSERT INTO catalogo (nome, descricao, imagem) VALUES (%s, %s, %s)", (nome, descricao, novo_nome))
             con.commit()
             cur.close()
             con.close()
+
+            pasta_templates = os.path.join(app.root_path, 'templates', 'catalogos')
+            os.makedirs(pasta_templates, exist_ok=True)
+            caminho = os.path.join(pasta_templates, f'{nome}.html')
+
+            if not os.path.exists(caminho):
+                html = """<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>TITULO - Biblioteca</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+        <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}" class="ativo">Início</a></li>
+                        <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
+                        <li><a href="{{ url_for('favoritos') }}">Favoritos</a></li>
+                        <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="conteudo-catalogo">
+            {% for livro in livros %}
+            <div class="livro">
+                <img src="{{ url_for('static', filename='images/' + imagem_catalogo) }}" alt="{{ livro[1] }}">
+                <div class="info">
+                    <h2>{{ livro[1] }}</h2>
+                    <p>{{ livro[2] }} | {{ livro[3] }} | {{ livro[4] }}</p>
+                    <a href="{{ url_for('adicionar_favorito', id_livro=livro[0]) }}" class="btn-favorito"><i class="fa-solid fa-heart"></i> Adicionar aos Favoritos</a>
+                    <a href="{{ url_for('adicionar_carrinho', id_livro=livro[0]) }}" class="btn-carrinho"><i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho</a>
+                </div>
+            </div>
+            {% else %}
+            <p>Nenhum livro disponível nesta categoria.</p>
+            {% endfor %}
+        </div>
+    </body>
+</html>"""
+                with open(caminho, 'w', encoding='utf-8') as f:
+                    f.write(html)
+
             return redirect(url_for("func_catalogos"))
-        return render_template("funcionario/adicionar_catalogo.html")
+        return render_template("funcionario/adicionar_catalogo.html", erro=None)
 
     @app.route("/funcionario/catalogos/remover/<int:id>")
     def func_remover_catalogo(id):
@@ -443,7 +525,7 @@ def init_routes(app):
         emprestimos = cur.fetchall()
         cur.close()
         con.close()
-        return render_template("funcionario/emprestimos.html", emprestimos=emprestimos)
+        return render_template("funcionario/emprestimos.html", emprestimos=emprestimos, today=date.today())
 
     # ============================================================
     # ============================================================
@@ -481,6 +563,10 @@ def init_routes(app):
         total_catalogos = cur.fetchone()[0]
         cur.execute("SELECT COUNT(*) FROM emprestimos_pedidos")
         total_emprestimos = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(*) FROM emprestimos_pedidos WHERE data_devolucao < CURDATE()")
+        total_expirados = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(*) FROM emprestimos_pedidos WHERE data_devolucao >= CURDATE() OR data_devolucao IS NULL")
+        total_ativos = cur.fetchone()[0]
         cur.execute("SELECT COUNT(*) FROM compras")
         total_compras = cur.fetchone()[0]
         cur.execute("SELECT COUNT(*) FROM livro WHERE promocao = 1")
@@ -493,6 +579,8 @@ def init_routes(app):
             total_livros=total_livros,
             total_catalogos=total_catalogos,
             total_emprestimos=total_emprestimos,
+            total_expirados=total_expirados,
+            total_ativos=total_ativos,
             total_compras=total_compras,
             total_promocoes=total_promocoes,
             total_perguntas=total_perguntas)

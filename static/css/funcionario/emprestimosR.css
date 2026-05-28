@@ -1,0 +1,86 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.aberto {
+    display: flex;
+}
+
+.modal-caixa {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 50px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-caixa h2 {
+    color: #2D1E6A;
+    font-size: 26px;
+    margin-bottom: 25px;
+}
+
+.resumo {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.resumo-item {
+    background: #f0f0f0;
+    padding: 20px 30px;
+    border-radius: 8px;
+    min-width: 140px;
+}
+
+.resumo-item p {
+    font-size: 16px;
+    color: darkgray;
+    margin-bottom: 8px;
+}
+
+.resumo-item span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #2D1E6A;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-modal {
+    padding: 12px 30px;
+    background: #2D1E6A;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.btn-detalhes {
+    margin-top: 12px;
+    padding: 8px 20px;
+    background: #2D1E6A;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
