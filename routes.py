@@ -547,6 +547,56 @@ def init_routes(app):
 
     # ============================================================
     # ============================================================
+    # Administração de Utilizadores
+    # ============================================================
+    # ============================================================
+
+    @app.route("/funcionario/utilizadores")
+    def func_utilizadores():
+        if not session.get("id"):
+            return redirect(url_for("login"))
+        con = connection()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM utilizador")
+        utilizadores = cur.fetchall()
+        cur.close()
+        con.close()
+        return render_template("funcionario/utilizadores.html", utilizadores=utilizadores)
+
+    @app.route("/funcionario/utilizadores/adicionar", methods=["GET", "POST"])
+    def func_adicionar_utilizador():
+        if not session.get("id"):
+            return redirect(url_for("login"))
+        if request.method == "POST":
+            nome = request.form["nome"]
+            idade = request.form["idade"]
+            email = request.form["email"]
+            password = request.form["password"]
+            telefone = request.form["telefone"]
+            con = connection()
+            cur = con.cursor()
+            cur.execute("INSERT INTO utilizador (nome, idade, email, password, data_registo, telefone) VALUES (%s, %s, %s, %s, CURDATE(), %s)", (nome, idade, email, password, telefone))
+            con.commit()
+            cur.close()
+            con.close()
+            return redirect(url_for("func_utilizadores"))
+        return render_template("funcionario/adicionar_utilizador.html")
+
+    @app.route("/funcionario/utilizadores/remover/<int:id>")
+    def func_remover_utilizador(id):
+        if not session.get("id"):
+            return redirect(url_for("login"))
+        con = connection()
+        cur = con.cursor()
+        cur.execute("DELETE FROM utilizador WHERE id_utilizador = %s", (id,))
+        con.commit()
+        cur.close()
+        con.close()
+        return redirect(url_for("func_utilizadores"))
+
+
+    # ============================================================
+    # ============================================================
     # Administração dos Relatórios
     # ============================================================
     # ============================================================
