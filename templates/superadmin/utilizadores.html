@@ -2,7 +2,7 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Catálogos - Funcionário</title>
+        <title>Utilizadores - Super Admin</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/menu.css') }}">
@@ -15,32 +15,43 @@
             <ul>
                 <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
                 <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
-                <li><a href="{{ url_for('func_catalogos') }}" class="ativo">Catálogos</a></li>
+                <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
                 <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
                 <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
                 <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
                 <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
                 <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
-                <li><a href="{{ url_for('func_utilizadores') }}">Utilizadores</a></li>
+                <li><a href="{{ url_for('func_utilizadores') }}" class="ativo">Utilizadores</a></li>
             </ul>
             <div class="user-menu">
-                <p>{{ session['nome'] }}</p>
+                <p>{{ session['nome'] }} (Super Admin)</p>
                 <a href="{{ url_for('logout') }}">Sair da conta</a>
             </div>
         </aside>
 
         <main class="main-content">
-            <h1 class="titulo">Gestão de Catálogos</h1>
-            <a href="{{ url_for('func_adicionar_catalogo') }}" class="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar Catálogo</a>
+            <h1 class="titulo">Gestão de Utilizadores</h1>
+            <a href="{{ url_for('func_adicionar_utilizador') }}" class="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar Utilizador</a>
             <table class="tabela">
                 <thead>
-                    <tr><th>Nome</th><th>Descrição</th><th>Imagem</th><th>Ações</th></tr>
+                    <tr><th>ID</th><th>Nome</th><th>Idade</th><th>Email</th><th>Telefone</th><th>Data Registo</th><th>Ações</th></tr>
                 </thead>
                 <tbody>
-                    {% for catalogo in catalogos %}
-                    <tr><td>{{ catalogo[1] }}</td><td>{{ catalogo[2] }}</td><td>{{ catalogo[3] }}</td><td><a href="{{ url_for('func_remover_catalogo', id=catalogo[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este catálogo?')">Remover</a></td></tr>
+                    {% for u in utilizadores %}
+                    <tr>
+                        <td>{{ u[0] }}</td>
+                        <td>{{ u[1] }}</td>
+                        <td>{{ u[2] }}</td>
+                        <td>{{ u[3] }}</td>
+                        <td>{{ u[6] }}</td>
+                        <td>{{ u[5] }}</td>
+                        <td>
+                            <a href="{{ url_for('func_mudar_senha', id=u[0]) }}" class="btn-adicionar" style="margin-right: 5px;">Mudar Senha</a>
+                            <a href="{{ url_for('func_remover_utilizador', id=u[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este utilizador?')">Remover</a>
+                        </td>
+                    </tr>
                     {% else %}
-                    <tr><td>Nenhum catálogo registado.</td></tr>
+                    <tr><td>Nenhum utilizador registado.</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

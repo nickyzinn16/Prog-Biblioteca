@@ -33,11 +33,11 @@
             <h1 class="titulo">Compras</h1>
             <table class="tabela">
                 <thead>
-                    <tr><th>ID</th><th>Livro</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Data</th></tr>
+                    <tr><th>Livro</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Data</th></tr>
                 </thead>
                 <tbody>
                     {% for c in compras %}
-                    <tr><td>{{ c[0] }}</td><td>{{ c[1] }}</td><td>{{ c[2] }}</td><td>{{ c[3] }}</td><td>{{ c[4] }}</td><td>{{ c[5] }}</td></tr>
+                    <tr><td>{{ c[1] }}</td><td>{{ c[2] }}</td><td>{{ c[3] }}</td><td>{{ c[4] }}</td><td>{{ c[5] }}</td></tr>
                     {% else %}
                     <tr><td>Nenhuma compra registada.</td></tr>
                     {% endfor %}

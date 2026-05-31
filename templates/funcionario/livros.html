@@ -34,11 +34,11 @@
             <a href="{{ url_for('func_adicionar_livro') }}" class="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar Livro</a>
             <table class="tabela">
                 <thead>
-                    <tr><th>ID</th><th>Título</th><th>Autor</th><th>Editora</th><th>Ano</th><th>Categoria</th><th>Quantidade</th><th>Preço</th><th>Ações</th></tr>
+                    <tr><th>Título</th><th>Autor</th><th>Editora</th><th>Ano</th><th>Categoria</th><th>Quantidade</th><th>Preço</th><th>Ações</th></tr>
                 </thead>
                 <tbody>
                     {% for livro in livros %}
-                    <tr><td>{{ livro[0] }}</td><td>{{ livro[1] }}</td><td>{{ livro[2] }}</td><td>{{ livro[3] }}</td><td>{{ livro[4] }}</td><td>{{ livro[5] }}</td><td>{{ livro[6] }}</td><td>{{ livro[9] }} CVE</td><td><a href="{{ url_for('func_remover_livro', id=livro[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este livro?')">Remover</a></td></tr>
+                    <tr><td>{{ livro[1] }}</td><td>{{ livro[2] }}</td><td>{{ livro[3] }}</td><td>{{ livro[4] }}</td><td>{{ livro[5] }}</td><td>{{ livro[6] }}</td><td>{{ livro[9] }} CVE</td><td><a href="{{ url_for('func_remover_livro', id=livro[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este livro?')">Remover</a></td></tr>
                     {% else %}
                     <tr><td>Nenhum livro registado.</td></tr>
                     {% endfor %}

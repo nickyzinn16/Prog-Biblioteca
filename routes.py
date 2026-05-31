@@ -84,6 +84,7 @@ def init_routes(app):
             if utilizador:
                 session["id"] = utilizador[0]
                 session["nome"] = utilizador[1]
+                session["email"] = utilizador[3]
                 return redirect(url_for("dashboard_funcionario"))
             else:
                 erro = "Email ou password incorretos!"
@@ -392,6 +393,7 @@ def init_routes(app):
         </div>
     </body>
 </html>"""
+                html = html.replace('TITULO', nome.capitalize())
                 with open(caminho, 'w', encoding='utf-8') as f:
                     f.write(html)
 
@@ -561,12 +563,16 @@ def init_routes(app):
         utilizadores = cur.fetchall()
         cur.close()
         con.close()
+        if session.get("email") == "superadmin@biblioteca.cv":
+            return render_template("superadmin/utilizadores.html", utilizadores=utilizadores)
         return render_template("funcionario/utilizadores.html", utilizadores=utilizadores)
 
     @app.route("/funcionario/utilizadores/adicionar", methods=["GET", "POST"])
     def func_adicionar_utilizador():
         if not session.get("id"):
             return redirect(url_for("login"))
+        if session.get("email") != "superadmin@biblioteca.cv":
+            return redirect(url_for("func_utilizadores"))
         if request.method == "POST":
             nome = request.form["nome"]
             idade = request.form["idade"]
@@ -586,6 +592,8 @@ def init_routes(app):
     def func_remover_utilizador(id):
         if not session.get("id"):
             return redirect(url_for("login"))
+        if session.get("email") != "superadmin@biblioteca.cv":
+            return redirect(url_for("func_utilizadores"))
         con = connection()
         cur = con.cursor()
         cur.execute("DELETE FROM utilizador WHERE id_utilizador = %s", (id,))
@@ -594,6 +602,30 @@ def init_routes(app):
         con.close()
         return redirect(url_for("func_utilizadores"))
 
+    @app.route("/funcionario/utilizadores/senha/<int:id>", methods=["GET", "POST"])
+    def func_mudar_senha(id):
+        if not session.get("id"):
+            return redirect(url_for("login"))
+        if session.get("email") != "superadmin@biblioteca.cv":
+            return redirect(url_for("func_utilizadores"))
+        if request.method == "POST":
+            nova_senha = request.form["nova_senha"]
+            confirmar_senha = request.form["confirmar_senha"]
+            if nova_senha == confirmar_senha:
+                con = connection()
+                cur = con.cursor()
+                cur.execute("UPDATE utilizador SET password = %s WHERE id_utilizador = %s", (nova_senha, id))
+                con.commit()
+                cur.close()
+                con.close()
+            return redirect(url_for("func_utilizadores"))
+        con = connection()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM utilizador WHERE id_utilizador = %s", (id,))
+        utilizador = cur.fetchone()
+        cur.close()
+        con.close()
+        return render_template("superadmin/mudar_senha.html", utilizador=utilizador)
 
     # ============================================================
     # ============================================================

@@ -33,12 +33,11 @@
             <h1 class="titulo">Empréstimos</h1>
             <table class="tabela">
                 <thead>
-                    <tr><th>ID</th><th>Livro</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Data Pedido</th><th>Data Devolução</th><th>Estado</th></tr>
+                    <tr><th>Livro</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Data Pedido</th><th>Data Devolução</th><th>Estado</th></tr>
                 </thead>
                 <tbody>
                     {% for e in emprestimos %}
                     <tr>
-                        <td>{{ e[0] }}</td>
                         <td>{{ e[1] }}</td>
                         <td>{{ e[2] }}</td>
                         <td>{{ e[3] }}</td>

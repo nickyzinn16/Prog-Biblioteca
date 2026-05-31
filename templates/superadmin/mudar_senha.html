@@ -2,11 +2,11 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Catálogos - Funcionário</title>
+        <title>Mudar Senha - Super Admin</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/menu.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/livros.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/form.css') }}">
         <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -15,35 +15,28 @@
             <ul>
                 <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
                 <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
-                <li><a href="{{ url_for('func_catalogos') }}" class="ativo">Catálogos</a></li>
+                <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
                 <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
                 <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
                 <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
                 <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
                 <li><a href="{{ url_for('func_relatorios') }}">Relatórios</a></li>
-                <li><a href="{{ url_for('func_utilizadores') }}">Utilizadores</a></li>
+                <li><a href="{{ url_for('func_utilizadores') }}" class="ativo">Utilizadores</a></li>
             </ul>
             <div class="user-menu">
-                <p>{{ session['nome'] }}</p>
+                <p>{{ session['nome'] }} (Super Admin)</p>
                 <a href="{{ url_for('logout') }}">Sair da conta</a>
             </div>
         </aside>
 
         <main class="main-content">
-            <h1 class="titulo">Gestão de Catálogos</h1>
-            <a href="{{ url_for('func_adicionar_catalogo') }}" class="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar Catálogo</a>
-            <table class="tabela">
-                <thead>
-                    <tr><th>Nome</th><th>Descrição</th><th>Imagem</th><th>Ações</th></tr>
-                </thead>
-                <tbody>
-                    {% for catalogo in catalogos %}
-                    <tr><td>{{ catalogo[1] }}</td><td>{{ catalogo[2] }}</td><td>{{ catalogo[3] }}</td><td><a href="{{ url_for('func_remover_catalogo', id=catalogo[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este catálogo?')">Remover</a></td></tr>
-                    {% else %}
-                    <tr><td>Nenhum catálogo registado.</td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <h1 class="titulo">Mudar Senha - {{ utilizador[1] }}</h1>
+            <form action="{{ url_for('func_mudar_senha', id=utilizador[0]) }}" method="POST">
+                <div class="campo"><label>Nova Senha</label><input type="password" name="nova_senha" placeholder="Nova senha" required></div>
+                <div class="campo"><label>Confirmar Senha</label><input type="password" name="confirmar_senha" placeholder="Confirmar senha" required></div>
+                <button type="submit" class="btn-adicionar">Guardar</button>
+                <a href="{{ url_for('func_utilizadores') }}">Cancelar</a>
+            </form>
         </main>
 
         <button id="btn-topo">↑</button>
