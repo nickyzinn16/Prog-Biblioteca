@@ -30,7 +30,7 @@
             <form action="{{ url_for('emprestar', id_livro=id_livro) }}" method="POST">
                 <div class="campo"><label>Nome</label><input type="text" name="nome" placeholder="O teu nome completo" required></div>
                 <div class="campo"><label>Email</label><input type="email" name="email" placeholder="O teu email" required></div>
-                <div class="campo"><label>Telefone</label><input type="text" name="telefone" placeholder="O teu telefone"></div>
+                <div class="campo"><label>Telefone</label><input type="tel" name="telefone" placeholder="O teu telefone" pattern="[0-9]+" title="Insira apenas números"></div>
                 <div class="campo"><label>Data de Devolução</label><input type="date" name="data_devolucao" required></div>
                 <button type="submit" class="btn-adicionar">Finalizar Empréstimo</button>
                 <a href="{{ url_for('carrinho') }}">Cancelar</a>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Políticas e Privacidade - Biblioteca</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/perguntas.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+        <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Início</a></li>
+                        <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
+                        <li><a href="{{ url_for('favoritos') }}">Favoritos</a></li>
+                        <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <section class="faq">
+            <h2>POLÍTICAS E PRIVACIDADE</h2>
+
+            <div class="faq-item">
+                <h3 class="pergunta">1. Recolha de Dados</h3>
+                <p class="resposta">A Biblioteca do Mindelo recolhe apenas os dados necessários para o funcionamento dos seus serviços, nomeadamente: nome, email, telefone e idade. Estes dados são recolhidos no momento do registo ou ao efetuar empréstimos e compras de livros.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="pergunta">2. Utilização dos Dados</h3>
+                <p class="resposta">Os dados recolhidos são utilizados exclusivamente para gerir empréstimos, compras, devoluções e comunicações relacionadas com os serviços da biblioteca. Os seus dados nunca serão vendidos ou partilhados com terceiros para fins comerciais.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="pergunta">3. Empréstimos e Devoluções</h3>
+                <p class="resposta">O prazo máximo de empréstimo é de 15 dias a partir da data do pedido. Após esse período, o empréstimo será considerado expirado. O utilizador é responsável pela devolução do livro em bom estado dentro do prazo estabelecido.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="pergunta">4. Compras</h3>
+                <p class="resposta">As compras realizadas através do sistema são finalizadas presencialmente na biblioteca. O preço apresentado no site é o valor final, salvo em casos de promoções ativas que aplicam descontos automáticos.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="pergunta">5. Segurança dos Dados</h3>
+                <p class="resposta">A Biblioteca do Mindelo adota medidas de segurança para proteger os dados dos utilizadores contra acessos não autorizados, alterações ou destruição. Os dados são armazenados numa base de dados protegida e o acesso é restrito aos funcionários autorizados.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="pergunta">6. Direitos do Utilizador</h3>
+                <p class="resposta">O utilizador tem o direito de solicitar a consulta, correção ou eliminação dos seus dados pessoais a qualquer momento, contactando a biblioteca através do email biblioteca@gmail.com ou presencialmente.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="pergunta">7. Cookies e Sessões</h3>
+                <p class="resposta">O site utiliza sessões para manter o funcionamento de funcionalidades como o carrinho de compras, favoritos e autenticação de funcionários. Não são utilizados cookies de rastreamento ou publicidade.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="pergunta">8. Alterações às Políticas</h3>
+                <p class="resposta">A Biblioteca do Mindelo reserva-se o direito de atualizar estas políticas a qualquer momento. Quaisquer alterações serão publicadas nesta página. Recomendamos a consulta periódica desta secção.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="pergunta">9. Contacto</h3>
+                <p class="resposta">Para questões relacionadas com privacidade ou estas políticas, entre em contacto connosco através do email biblioteca@gmail.com ou pelo telefone +9959295.</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="imagem-footer"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a><p>BIBLIOTECA DO MINDELO</p></div>
+                <div class="info-uteis">
+                    <h4>INFORMAÇÕES ÚTEIS</h4>
+                    <ul>
+                        <li><a href="{{ url_for('favoritos') }}">Meus Livros Favoritos</a></li>
+                        <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('carrinho') }}">Meu Carrinho</a></li>
+                        <li><a href="{{ url_for('perguntas') }}">Perguntas frequentes (FAQ)</a></li>
+                    </ul>
+                </div>
+                <div class="endereco-contactos">
+                    <h4>ENDEREÇO & CONTACTOS</h4>
+                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z" target="_blank">Biblioteca Municipal do Mindelo</a></p>
+                    <p><a href="tel:9959295">+9959295</a></p>
+                    <p><a href="mailto:biblioteca@gmail.com">biblioteca@gmail.com</a></p>
+                </div>
+                <div class="redes-container">
+                    <h4>SIGA A BIBLIOTECA NAS REDES SOCIAIS</h4>
+                    <div class="redes-sociais">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 BIBLIOTECA DO MINDELO - Todos os direitos reservados</p>
+                <a href="{{ url_for('politicas') }}">Políticas e Privacidade</a>
+            </div>
+        </footer>
+        <button id="btn-topo">↑</button>
+        <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
+    </body>
+</html>
