@@ -41,8 +41,8 @@
                     <tr>
                         <td>{{ livro[1] }}</td><td>{{ livro[2] }}</td><td>{{ livro[3] }}</td><td>{{ livro[4] }}</td><td>{{ livro[5] }}</td><td>{{ livro[6] }}</td><td>{{ livro[9] }} CVE</td>
                         <td class="acoes">
-                            <a href="{{ url_for('func_editar_livro', id=livro[0]) }}" title="Editar" style="color: #2D1E6A; margin-right: 10px;"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="{{ url_for('func_remover_livro', id=livro[0]) }}" title="Remover" style="color: #e74c3c;" onclick="return confirm('Tem certeza que deseja remover este livro?')"><i class="fa-solid fa-trash"></i></a>
+                            <a href="{{ url_for('func_editar_livro', id=livro[0]) }}" title="Editar" style="color: darkblue; margin-right: 10px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{{ url_for('func_remover_livro', id=livro[0]) }}" title="Remover" style="color: red;" onclick="return confirm('Tem certeza que deseja remover este livro?')"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                     {% else %}
