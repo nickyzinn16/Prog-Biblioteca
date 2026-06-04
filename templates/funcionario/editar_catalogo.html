@@ -2,11 +2,11 @@
 <html lang="pt">
 <head>
     <meta charset="utf-8">
-    <title>Promoções - Funcionário</title>
+    <title>Editar Catálogo - Funcionário</title>
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/menu.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/livros.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/funcionario/form.css') }}">
     <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -15,8 +15,8 @@
         <ul>
             <li><a href="{{ url_for('dashboard_funcionario') }}">Início</a></li>
             <li><a href="{{ url_for('func_livros') }}">Livros</a></li>
-            <li><a href="{{ url_for('func_catalogos') }}">Catálogos</a></li>
-            <li><a href="{{ url_for('func_promocoes') }}" class="ativo">Promoções</a></li>
+            <li><a href="{{ url_for('func_catalogos') }}" class="ativo">Catálogos</a></li>
+            <li><a href="{{ url_for('func_promocoes') }}">Promoções</a></li>
             <li><a href="{{ url_for('func_perguntas') }}">Perguntas</a></li>
             <li><a href="{{ url_for('func_emprestimos') }}">Empréstimos</a></li>
             <li><a href="{{ url_for('func_compras') }}">Compras</a></li>
@@ -30,20 +30,14 @@
     </aside>
 
     <main class="main-content">
-        <h1 class="titulo">Promoções Ativas</h1>
-        <a href="{{ url_for('func_adicionar_promocao') }}" class="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar Promoção</a>
-        <table class="tabela">
-            <thead>
-                <tr><th>Título</th><th>Autor</th><th>Preço</th><th>Desconto</th><th>Preço Final</th><th>Ações</th></tr>
-            </thead>
-            <tbody>
-                {% for p in promocoes %}
-                <tr><td>{{ p[1] }}</td><td>{{ p[2] }}</td><td>{{ p[9] }} CVE</td><td>{{ p[8] }}%</td><td>{{ p[9] - (p[9] * p[8] // 100) }} CVE</td><td><a href="{{ url_for('func_remover_promocao', id=p[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover esta promoção?')">Remover</a></td></tr>
-                {% else %}
-                <tr><td>Nenhuma promoção ativa.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <h1 class="titulo">Editar Catálogo</h1>
+        <form action="{{ url_for('func_editar_catalogo', id=catalogo[0]) }}" method="POST">
+            <div class="campo"><label>Nome</label><input type="text" name="nome" value="{{ catalogo[1] }}" required></div>
+            <div class="campo"><label>Descrição</label><input type="text" name="descricao" value="{{ catalogo[2] }}" required></div>
+            <div class="campo"><label>Imagem atual:</label><p>{{ catalogo[3] }}</p></div>
+            <button type="submit" class="btn-adicionar">Guardar</button>
+            <a href="{{ url_for('func_catalogos') }}">Cancelar</a>
+        </form>
     </main>
 
     <button id="btn-topo">↑</button>

@@ -6,12 +6,6 @@ import time
 
 def init_routes(app):
 
-    # ============================================================
-    # ============================================================
-    # Rotas Publicas
-    # ============================================================
-    # ============================================================
-
     @app.route("/")
     def index():
         con = connection()
@@ -33,7 +27,7 @@ def init_routes(app):
         imagem_catalogo = cat[0] if cat else ''
         cur.close()
         con.close()
-        return render_template(f"catalogos/{categoria}.html", livros=livros, imagem_catalogo=imagem_catalogo)
+        return render_template(f"catalogos/{categoria}.html", livros=livros, imagem_catalogo=imagem_catalogo, nome_catalogo=categoria.capitalize())
 
     @app.route("/promocoes")
     def promocoes():
@@ -63,12 +57,6 @@ def init_routes(app):
     def politicas():
         return render_template("politicas.html")
 
-    # ============================================================
-    # ============================================================
-    # Sistema de autenticação
-    # ============================================================
-    # ============================================================
-
     @app.route("/login", methods=["GET", "POST"])
     def login():
         erro = None
@@ -94,12 +82,6 @@ def init_routes(app):
     def logout():
         session.clear()
         return redirect(url_for("index"))
-
-    # ============================================================
-    # ============================================================
-    # Favoritos
-    # ============================================================
-    # ============================================================
 
     @app.route("/favoritos")
     def favoritos():
@@ -134,12 +116,6 @@ def init_routes(app):
                 session["favoritos"] = favoritos
         return redirect(url_for("favoritos"))
 
-    # ============================================================
-    # ============================================================
-    # Carrinho
-    # ============================================================
-    # ============================================================
-
     @app.route("/carrinho")
     def carrinho():
         ids = session.get("carrinho", [])
@@ -172,12 +148,6 @@ def init_routes(app):
                 carrinho.remove(id_livro)
                 session["carrinho"] = carrinho
         return redirect(url_for("carrinho"))
-
-    # ============================================================
-    # ============================================================
-    # Emprestimos e Compras
-    # ============================================================
-    # ============================================================
 
     @app.route("/emprestar/<int:id_livro>", methods=["GET", "POST"])
     def emprestar(id_livro):
@@ -217,29 +187,17 @@ def init_routes(app):
             return redirect(url_for("carrinho"))
         con = connection()
         cur = con.cursor()
-        cur.execute("SELECT titulo, preco FROM livro WHERE id_livro = %s", (id_livro,))
+        cur.execute("SELECT titulo, preco, promocao, desconto FROM livro WHERE id_livro = %s", (id_livro,))
         livro = cur.fetchone()
         cur.close()
         con.close()
         return render_template("comprar.html", livro=livro, id_livro=id_livro)
-
-    # ============================================================
-    # ============================================================
-    # PAinel de administração
-    # ============================================================
-    # ============================================================
 
     @app.route("/funcionario")
     def dashboard_funcionario():
         if not session.get("id"):
             return redirect(url_for("login"))
         return render_template("funcionario/dashboard.html")
-
-    # ============================================================
-    # ============================================================
-    # Administração de Livros
-    # ============================================================
-    # ============================================================
 
     @app.route("/funcionario/livros")
     def func_livros():
@@ -262,7 +220,7 @@ def init_routes(app):
             autor = request.form["autor"]
             editora = request.form["editora"]
             ano = request.form["ano"]
-            categoria  = request.form["categoria"]
+            categoria = request.form["categoria"]
             quantidade = request.form["quantidade"]
             preco = request.form["preco"]
             con = connection()
@@ -294,12 +252,6 @@ def init_routes(app):
         con.close()
         return redirect(url_for("func_livros"))
 
-    # ============================================================
-    # ============================================================
-    # Administração de Catálogos
-    # ============================================================
-    # ============================================================
-
     @app.route("/funcionario/catalogos")
     def func_catalogos():
         if not session.get("id"):
@@ -320,33 +272,26 @@ def init_routes(app):
             nome = request.form["nome"]
             descricao = request.form["descricao"]
             ficheiro = request.files["imagem"]
-
             if not ficheiro or ficheiro.filename == '':
                 return render_template("funcionario/adicionar_catalogo.html", erro="Nenhum ficheiro selecionado.")
-
             nome_ficheiro = ficheiro.filename
             extensao = nome_ficheiro.rsplit('.', 1)[-1].lower()
             extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp']
-
             if extensao not in extensoes_permitidas:
-                return render_template("funcionario/adicionar_catalogo.html", erro="Formato não suportado. Use: jpg, jpeg, png, gif ou webp.")
-
+                return render_template("funcionario/adicionar_catalogo.html", erro="Formato não suportado.")
             novo_nome = str(int(time.time())) + '_' + nome_ficheiro
             pasta_imagens = os.path.join(app.root_path, 'static', 'images')
             os.makedirs(pasta_imagens, exist_ok=True)
             ficheiro.save(os.path.join(pasta_imagens, novo_nome))
-
             con = connection()
             cur = con.cursor()
             cur.execute("INSERT INTO catalogo (nome, descricao, imagem) VALUES (%s, %s, %s)", (nome, descricao, novo_nome))
             con.commit()
             cur.close()
             con.close()
-
             pasta_templates = os.path.join(app.root_path, 'templates', 'catalogos')
             os.makedirs(pasta_templates, exist_ok=True)
             caminho = os.path.join(pasta_templates, f'{nome}.html')
-
             if not os.path.exists(caminho):
                 html = """<!DOCTYPE html>
 <html lang="pt">
@@ -361,9 +306,7 @@ def init_routes(app):
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo">
-                    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a>
-                </div>
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('index') }}" class="ativo">Início</a></li>
@@ -375,28 +318,62 @@ def init_routes(app):
                 </div>
             </nav>
         </header>
-
         <div class="conteudo-catalogo">
-            {% for livro in livros %}
-            <div class="livro">
-                <img src="{{ url_for('static', filename='images/' + imagem_catalogo) }}" alt="{{ livro[1] }}">
-                <div class="info">
-                    <h2>{{ livro[1] }}</h2>
-                    <p>{{ livro[2] }} | {{ livro[3] }} | {{ livro[4] }}</p>
-                    <a href="{{ url_for('adicionar_favorito', id_livro=livro[0]) }}" class="btn-favorito"><i class="fa-solid fa-heart"></i> Adicionar aos Favoritos</a>
-                    <a href="{{ url_for('adicionar_carrinho', id_livro=livro[0]) }}" class="btn-carrinho"><i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho</a>
+            <h1 class="titulo-catalogo">{{ nome_catalogo }}</h1>
+            <div class="livros-grid">
+                {% for livro in livros %}
+                <div class="livro">
+                    <img src="{{ url_for('static', filename='images/' + imagem_catalogo) }}" alt="{{ livro[1] }}">
+                    <div class="info">
+                        <h2>{{ livro[1] }}</h2>
+                        <p>{{ livro[2] }} | {{ livro[3] }} | {{ livro[4] }}</p>
+                        <a href="{{ url_for('adicionar_favorito', id_livro=livro[0]) }}" class="btn-favorito"><i class="fa-solid fa-heart"></i> Adicionar aos Favoritos</a>
+                        <a href="{{ url_for('adicionar_carrinho', id_livro=livro[0]) }}" class="btn-carrinho"><i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho</a>
+                    </div>
+                </div>
+                {% else %}
+                <p>Nenhum livro disponível nesta categoria.</p>
+                {% endfor %}
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="imagem-footer"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a><p>BIBLIOTECA DO MINDELO</p></div>
+                <div class="info-uteis">
+                    <h4>INFORMAÇÕES ÚTEIS</h4>
+                    <ul>
+                        <li><a href="{{ url_for('favoritos') }}">Meus Livros Favoritos</a></li>
+                        <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('carrinho') }}">Meu Carrinho</a></li>
+                        <li><a href="{{ url_for('perguntas') }}">Perguntas frequentes (FAQ)</a></li>
+                    </ul>
+                </div>
+                <div class="endereco-contactos">
+                    <h4>ENDEREÇO & CONTACTOS</h4>
+                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z" target="_blank">Biblioteca Municipal do Mindelo</a></p>
+                    <p><a href="tel:9959295">+9959295</a></p>
+                    <p><a href="mailto:biblioteca@gmail.com">biblioteca@gmail.com</a></p>
+                </div>
+                <div class="redes-container">
+                    <h4>SIGA A BIBLIOTECA NAS REDES SOCIAIS</h4>
+                    <div class="redes-sociais">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
+                    </div>
                 </div>
             </div>
-            {% else %}
-            <p>Nenhum livro disponível nesta categoria.</p>
-            {% endfor %}
-        </div>
+            <div class="footer-bottom">
+                <p>© 2026 BIBLIOTECA DO MINDELO - Todos os direitos reservados</p>
+                <a href="{{ url_for('politicas') }}">Políticas e Privacidade</a>
+            </div>
+        </footer>
+        <button id="btn-topo">↑</button>
+        <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>
 </html>"""
                 html = html.replace('TITULO', nome.capitalize())
                 with open(caminho, 'w', encoding='utf-8') as f:
                     f.write(html)
-
             return redirect(url_for("func_catalogos"))
         return render_template("funcionario/adicionar_catalogo.html", erro=None)
 
@@ -411,12 +388,6 @@ def init_routes(app):
         cur.close()
         con.close()
         return redirect(url_for("func_catalogos"))
-
-    # ============================================================
-    # ============================================================
-    # Administração de Promoções
-    # ============================================================
-    # ============================================================
 
     @app.route("/funcionario/promocoes")
     def func_promocoes():
@@ -465,12 +436,6 @@ def init_routes(app):
         con.close()
         return redirect(url_for("func_promocoes"))
 
-    # ============================================================
-    # ============================================================
-    # Administração de Perguntas Frequentes
-    # ============================================================
-    # ============================================================
-
     @app.route("/funcionario/perguntas")
     def func_perguntas():
         if not session.get("id"):
@@ -511,12 +476,6 @@ def init_routes(app):
         con.close()
         return redirect(url_for("func_perguntas"))
 
-    # ============================================================
-    # ============================================================
-    # Administração de Empréstimos
-    # ============================================================
-    # ============================================================
-
     @app.route("/funcionario/emprestimos")
     def func_emprestimos():
         if not session.get("id"):
@@ -529,12 +488,6 @@ def init_routes(app):
         con.close()
         return render_template("funcionario/emprestimos.html", emprestimos=emprestimos, today=date.today())
 
-    # ============================================================
-    # ============================================================
-    # Administração de Compras
-    # ============================================================
-    # ============================================================
-
     @app.route("/funcionario/compras")
     def func_compras():
         if not session.get("id"):
@@ -546,12 +499,6 @@ def init_routes(app):
         cur.close()
         con.close()
         return render_template("funcionario/compras.html", compras=compras)
-
-    # ============================================================
-    # ============================================================
-    # Administração de Utilizadores
-    # ============================================================
-    # ============================================================
 
     @app.route("/funcionario/utilizadores")
     def func_utilizadores():
@@ -596,6 +543,12 @@ def init_routes(app):
             return redirect(url_for("func_utilizadores"))
         con = connection()
         cur = con.cursor()
+        cur.execute("SELECT email FROM utilizador WHERE id_utilizador = %s", (id,))
+        user = cur.fetchone()
+        if user and user[0] == "superadmin@biblioteca.cv":
+            cur.close()
+            con.close()
+            return redirect(url_for("func_utilizadores"))
         cur.execute("DELETE FROM utilizador WHERE id_utilizador = %s", (id,))
         con.commit()
         cur.close()
@@ -627,12 +580,6 @@ def init_routes(app):
         con.close()
         return render_template("superadmin/mudar_senha.html", utilizador=utilizador)
 
-    # ============================================================
-    # ============================================================
-    # Administração dos Relatórios
-    # ============================================================
-    # ============================================================
-
     @app.route("/funcionario/relatorios")
     def func_relatorios():
         if not session.get("id"):
@@ -658,11 +605,58 @@ def init_routes(app):
         cur.close()
         con.close()
         return render_template("funcionario/relatorios.html",
-            total_livros=total_livros,
-            total_catalogos=total_catalogos,
-            total_emprestimos=total_emprestimos,
-            total_expirados=total_expirados,
-            total_ativos=total_ativos,
-            total_compras=total_compras,
-            total_promocoes=total_promocoes,
-            total_perguntas=total_perguntas)
+            total_livros=total_livros, total_catalogos=total_catalogos,
+            total_emprestimos=total_emprestimos, total_expirados=total_expirados,
+            total_ativos=total_ativos, total_compras=total_compras,
+            total_promocoes=total_promocoes, total_perguntas=total_perguntas)
+
+    @app.route("/funcionario/livros/editar/<int:id>", methods=["GET", "POST"])
+    def func_editar_livro(id):
+        if not session.get("id"):
+            return redirect(url_for("login"))
+        if request.method == "POST":
+            titulo = request.form["titulo"]
+            autor = request.form["autor"]
+            editora = request.form["editora"]
+            ano = request.form["ano"]
+            categoria = request.form["categoria"]
+            quantidade = request.form["quantidade"]
+            preco = request.form["preco"]
+            con = connection()
+            cur = con.cursor()
+            cur.execute("UPDATE livro SET titulo=%s, autor=%s, editora=%s, ano_publicacao=%s, categoria=%s, quantidade=%s, preco=%s WHERE id_livro=%s", (titulo, autor, editora, ano, categoria, quantidade, preco, id))
+            con.commit()
+            cur.close()
+            con.close()
+            return redirect(url_for("func_livros"))
+        con = connection()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM livro WHERE id_livro = %s", (id,))
+        livro = cur.fetchone()
+        cur.execute("SELECT nome FROM catalogo")
+        catalogos = cur.fetchall()
+        cur.close()
+        con.close()
+        return render_template("funcionario/editar_livro.html", livro=livro, catalogos=catalogos)
+
+    @app.route("/funcionario/catalogos/editar/<int:id>", methods=["GET", "POST"])
+    def func_editar_catalogo(id):
+        if not session.get("id"):
+            return redirect(url_for("login"))
+        if request.method == "POST":
+            nome = request.form["nome"]
+            descricao = request.form["descricao"]
+            con = connection()
+            cur = con.cursor()
+            cur.execute("UPDATE catalogo SET nome=%s, descricao=%s WHERE id_catalogo=%s", (nome, descricao, id))
+            con.commit()
+            cur.close()
+            con.close()
+            return redirect(url_for("func_catalogos"))
+        con = connection()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM catalogo WHERE id_catalogo = %s", (id,))
+        catalogo = cur.fetchone()
+        cur.close()
+        con.close()
+        return render_template("funcionario/editar_catalogo.html", catalogo=catalogo)

@@ -47,7 +47,9 @@
                         <td>{{ u[5] }}</td>
                         <td>
                             <a href="{{ url_for('func_mudar_senha', id=u[0]) }}" class="btn-adicionar" style="margin-right: 5px;">Mudar Senha</a>
+                            {% if u[3] != 'superadmin@biblioteca.cv' %}
                             <a href="{{ url_for('func_remover_utilizador', id=u[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este utilizador?')">Remover</a>
+                            {% endif %}
                         </td>
                     </tr>
                     {% else %}

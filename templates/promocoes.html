@@ -12,8 +12,7 @@
     <body>
         <header class="header">
             <nav class="navbar">
-                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a>
-                </div>
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
                 <div class="menu">
                     <ul>
                         <li><a href="{{ url_for('index') }}">Início</a></li>
@@ -29,7 +28,6 @@
         <section class="promocoes">
             <h1 class="titulo"><i class="fa-solid fa-percent"></i> Promoções</h1>
             <p class="descricao">Aproveita os melhores livros com desconto</p>
-
             <div class="area-promocoes">
                 {% for livro in livros %}
                 <div class="card">
@@ -38,6 +36,7 @@
                     <p class="preco-antigo">{{ livro[9] }} CVE</p>
                     <p class="preco-atual">{{ livro[9] - (livro[9] * livro[8] // 100) }} CVE</p>
                     <span class="desconto">-{{ livro[8] }}%</span>
+                    <a href="{{ url_for('adicionar_carrinho', id_livro=livro[0]) }}" class="btn-carrinho"><i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho</a>
                 </div>
                 {% else %}
                 <p>Nenhuma promoção disponível.</p>
@@ -76,7 +75,6 @@
                 <a href="{{ url_for('politicas') }}">Políticas e Privacidade</a>
             </div>
         </footer>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>

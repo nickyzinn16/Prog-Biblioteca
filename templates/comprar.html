@@ -27,16 +27,21 @@
         <main class="main">
             <h1 class="titulo">Comprar Livro</h1>
             <p class="subtitulo">{{ livro[0] }}</p>
+            {% if livro[2] == 1 %}
+            <p class="subtitulo" style="text-decoration: line-through;">Preço: {{ livro[1] }} CVE</p>
+            <p class="subtitulo">Preço com desconto: {{ livro[1] - (livro[1] * livro[3] // 100) }} CVE (-{{ livro[3] }}%)</p>
+            {% else %}
             <p class="subtitulo">Preço: {{ livro[1] }} CVE</p>
+            {% endif %}
             <form action="{{ url_for('comprar', id_livro=id_livro) }}" method="POST">
                 <div class="campo"><label>Nome</label><input type="text" name="nome" placeholder="O teu nome completo" required></div>
                 <div class="campo"><label>Email</label><input type="email" name="email" placeholder="O teu email" required></div>
                 <div class="campo"><label>Telefone</label><input type="tel" name="telefone" placeholder="O teu telefone" pattern="[0-9]+" title="Insira apenas números"></div>
+                <div class="campo"><label>Cartão Vinti4</label><input type="text" name="cartao" placeholder="Número do cartão Vinti4" pattern="[0-9]+" title="Insira apenas números" required></div>
                 <button type="submit" class="btn-adicionar">Finalizar Compra</button>
                 <a href="{{ url_for('carrinho') }}">Cancelar</a>
             </form>
         </main>
-
         <button id="btn-topo">↑</button>
         <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
     </body>

@@ -38,7 +38,13 @@
                 </thead>
                 <tbody>
                     {% for catalogo in catalogos %}
-                    <tr><td>{{ catalogo[1] }}</td><td>{{ catalogo[2] }}</td><td>{{ catalogo[3] }}</td><td><a href="{{ url_for('func_remover_catalogo', id=catalogo[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este catálogo?')">Remover</a></td></tr>
+                    <tr>
+                        <td>{{ catalogo[1] }}</td><td>{{ catalogo[2] }}</td><td>{{ catalogo[3] }}</td>
+                        <td>
+                            <a href="{{ url_for('func_editar_catalogo', id=catalogo[0]) }}" class="btn-adicionar" style="margin-right: 5px;">Editar</a>
+                            <a href="{{ url_for('func_remover_catalogo', id=catalogo[0]) }}" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este catálogo?')">Remover</a>
+                        </td>
+                    </tr>
                     {% else %}
                     <tr><td>Nenhum catálogo registado.</td></tr>
                     {% endfor %}
