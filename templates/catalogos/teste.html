@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Teste - Biblioteca</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+        <script src="https://kit.fontawesome.com/35842701b4.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a></div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}" class="ativo">Início</a></li>
+                        <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
+                        <li><a href="{{ url_for('favoritos') }}">Favoritos</a></li>
+                        <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="conteudo-catalogo">
+            <h1 class="titulo-catalogo">{{ nome_catalogo }}</h1>
+            <div class="livros-grid">
+                {% for livro in livros %}
+                <div class="livro">
+                    <img src="{{ url_for('static', filename='images/' + imagem_catalogo) }}" alt="{{ livro[1] }}">
+                    <div class="info">
+                        <h2>{{ livro[1] }}</h2>
+                        <p>{{ livro[2] }} | {{ livro[3] }} | {{ livro[4] }}</p>
+                        <a href="{{ url_for('adicionar_favorito', id_livro=livro[0]) }}" class="btn-favorito"><i class="fa-solid fa-heart"></i> Adicionar aos Favoritos</a>
+                        <a href="{{ url_for('adicionar_carrinho', id_livro=livro[0]) }}" class="btn-carrinho"><i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho</a>
+                    </div>
+                </div>
+                {% else %}
+                <p>Nenhum livro disponível nesta categoria.</p>
+                {% endfor %}
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="imagem-footer"><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo"></a><p>BIBLIOTECA DO MINDELO</p></div>
+                <div class="info-uteis">
+                    <h4>INFORMAÇÕES ÚTEIS</h4>
+                    <ul>
+                        <li><a href="{{ url_for('favoritos') }}">Meus Livros Favoritos</a></li>
+                        <li><a href="{{ url_for('promocoes') }}">Promoções</a></li>
+                        <li><a href="{{ url_for('carrinho') }}">Meu Carrinho</a></li>
+                        <li><a href="{{ url_for('perguntas') }}">Perguntas frequentes (FAQ)</a></li>
+                    </ul>
+                </div>
+                <div class="endereco-contactos">
+                    <h4>ENDEREÇO & CONTACTOS</h4>
+                    <p><a href="https://www.google.com/maps/place/Biblioteca+Municipal+do+Mindelo/@16.8866176,-24.9914655,17z" target="_blank">Biblioteca Municipal do Mindelo</a></p>
+                    <p><a href="tel:9959295">+9959295</a></p>
+                    <p><a href="mailto:biblioteca@gmail.com">biblioteca@gmail.com</a></p>
+                </div>
+                <div class="redes-container">
+                    <h4>SIGA A BIBLIOTECA NAS REDES SOCIAIS</h4>
+                    <div class="redes-sociais">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 BIBLIOTECA DO MINDELO - Todos os direitos reservados</p>
+                <a href="{{ url_for('politicas') }}">Políticas e Privacidade</a>
+            </div>
+        </footer>
+        <button id="btn-topo">↑</button>
+        <script src="{{ url_for('static', filename='javascript/botao.js') }}"></script>
+    </body>
+</html>
