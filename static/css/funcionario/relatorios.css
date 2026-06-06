@@ -1,3 +1,4 @@
+/* Grelha de 3 colunas para os cards de relatório */
 .relatorios-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -5,6 +6,7 @@
     padding: 20px 0;
 }
 
+/* Cada card de relatório com altura fixa e centrado */
 .relatorio-card {
     background: white;
     padding: 20px;
@@ -18,18 +20,21 @@
     height: 180px;
 }
 
+/* Ícone dentro de cada card */
 .relatorio-card i {
     font-size: 28px;
     color: #2c2c6c;
     margin-bottom: 8px;
 }
 
+/* Título de cada card */
 .relatorio-card h3 {
     color: #2c2c6c;
     font-size: 14px;
     margin-bottom: 8px;
 }
 
+/* Número grande dentro de cada card */
 .relatorio-card .numero {
     font-size: 28px;
     font-weight: bold;

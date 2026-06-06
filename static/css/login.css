@@ -1,3 +1,4 @@
+/* Corpo da página de login com imagem de fundo centrada */
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -9,6 +10,7 @@ body {
     background-size: cover;
 }
 
+/* Caixa de login semi-transparente centrada */
 .caixaLogin {
     background: rgba(45, 30, 106, 0.75);
     padding: 40px;
@@ -19,17 +21,20 @@ body {
     border: 1px solid rgba(214, 214, 214, 0.356);
 }
 
+/* Cada campo do formulário de login */
 .campo {
     margin-bottom: 20px;
     text-align: left;
 }
 
+/* Etiqueta de cada campo */
 .campo label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
 }
 
+/* Caixa de texto com fundo transparente */
 .campo input {
     width: 100%;
     padding: 12px;
@@ -41,6 +46,7 @@ body {
     font-size: 14px;
 }
 
+/* Botão de entrar */
 .btn-entrar {
     width: 100%;
     padding: 12px;

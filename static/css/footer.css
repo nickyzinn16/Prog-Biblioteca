@@ -1,3 +1,4 @@
+/* Fundo roxo do rodapé */
 .footer {
     background-color: #2D1E6A;
     color: white;
@@ -5,6 +6,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* As 4 colunas do rodapé lado a lado */
 .footer-container {
     display: flex;
     justify-content: space-between;
@@ -12,46 +14,55 @@
     padding: 40px 80px;
 }
 
+/* Coluna do logo */
 .imagem-footer {
     flex: 1;
     min-width: 200px;
 }
 
+/* Coluna das informações úteis */
 .info-uteis {
     flex: 1;
     min-width: 200px;
 }
 
+/* Cor dos links ao passar o rato nas informações úteis */
 .info-uteis a:hover {
     color: #FFD700;
 }
 
+/* Coluna do endereço e contactos */
 .endereco-contactos {
     flex: 1;
     min-width: 200px;
 }
 
+/* Links do endereço sem sublinhado */
 .endereco-contactos a {
     text-decoration: none;
     color: inherit;
 }
 
+/* Cor dos links do endereço ao passar o rato */
 .endereco-contactos a:hover {
     text-decoration: none;
     color: #FFD700;
 }
 
+/* Coluna das redes sociais */
 .redes-container {
     flex: 1;
     min-width: 200px;
 }
 
+/* Imagem do logo no rodapé */
 .imagem-footer img {
     width: 80px;
     margin-bottom: 10px;
     border-radius: 25%;
 }
 
+/* Nome da biblioteca por baixo do logo */
 .imagem-footer p {
     font-size: 17px;
     font-weight: bold;
@@ -59,30 +70,36 @@
     margin-left: -45px;
 }
 
+/* Títulos de cada coluna do rodapé */
 .footer h4 {
     margin-bottom: 15px;
     font-size: 16px;
 }
 
+/* Lista de links sem marcadores */
 .info-uteis ul {
     list-style: none;
     padding: 0;
 }
 
+/* Espaço entre cada link da lista */
 .info-uteis ul li {
     margin-bottom: 9px;
 }
 
+/* Cor dos links da lista */
 .info-uteis ul li a {
     text-decoration: none;
     color: lightgray;
 }
 
+/* Texto dos contactos */
 .endereco-contactos p {
     margin-bottom: 4px;
     color: lightgray;
 }
 
+/* Ícones das redes sociais */
 .redes-sociais a {
     display: inline-block;
     margin-right: 10px;
@@ -91,6 +108,7 @@
     text-decoration: none;
 }
 
+/* Barra inferior do rodapé com direitos e link */
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -100,11 +118,13 @@
     font-size: 16px;
 }
 
+/* Link na barra inferior sem sublinhado */
 .footer-bottom a {
     color: inherit;
     text-decoration: none;
 }
 
+/* Cor do link na barra inferior ao passar o rato */
 .footer-bottom a:hover {
     text-decoration: none;
     color: #FFD700;

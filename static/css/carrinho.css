@@ -1,7 +1,9 @@
+/* Texto centrado na secção do carrinho */
 .carrinho {
     text-align: center;
 }
 
+/* Grelha de 3 colunas para os cards do carrinho */
 .area-carrinho {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -10,6 +12,7 @@
     justify-items: center;
 }
 
+/* Card de cada livro no carrinho */
 .card {
     background: white;
     padding: 20px;
@@ -18,17 +21,20 @@
     position: relative;
 }
 
+/* Título do livro no card */
 .card h3 {
     margin: 10px 0;
     color: #2D1E6A;
 }
 
+/* Texto do livro no card */
 .card p {
     text-align: justify;
     line-height: 1.6;
     color: #2D1E6A;
 }
 
+/* Botão vermelho de remover do carrinho */
 .btn-remover-carrinho {
     display: inline-block;
     margin-top: 10px;
@@ -43,6 +49,7 @@
     box-sizing: border-box;
 }
 
+/* Botão roxo de emprestar livro */
 .btn-emprestar {
     display: inline-block;
     margin-top: 8px;
@@ -57,7 +64,7 @@
     box-sizing: border-box;
 }
 
-
+/* Botão verde de comprar livro */
 .btn-comprar {
     display: inline-block;
     margin-top: 8px;
@@ -70,4 +77,26 @@
     text-align: center;
     font-size: 17px;
     box-sizing: border-box;
+}
+
+/* Card usado no carrinho e nos favoritos */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 320px;
+    position: relative;
+}
+
+/* Título do livro no card */
+.card h3 {
+    margin: 10px 0;
+    color: #2D1E6A;
+}
+
+/* Texto do livro no card */
+.card p {
+    text-align: justify;
+    line-height: 1.6;
+    color: #2D1E6A;
 }

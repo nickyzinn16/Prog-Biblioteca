@@ -1,7 +1,9 @@
+/* Texto centrado na secção de promoções */
 .promocoes {
     text-align: center;
 }
 
+/* Grelha de 3 colunas para os cards de promoções */
 .area-promocoes {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -10,6 +12,7 @@
     justify-items: center;
 }
 
+/* Card de cada livro em promoção */
 .card {
     background: white;
     padding: 20px;
@@ -19,10 +22,12 @@
     text-align: center;
 }
 
+/* Efeito de subir o card ao passar o rato */
 .card:hover {
     transform: translateY(-5px);
 }
 
+/* Imagem do livro dentro do card */
 .card img {
     width: 100%;
     height: 250px;
@@ -30,16 +35,19 @@
     border-radius: 6px;
 }
 
+/* Título do livro no card */
 .card h3 {
     margin: 10px 0;
     color: #2D1E6A;
 }
 
+/* Texto do livro no card */
 .card p {
     margin: 5px 0;
     color: #2D1E6A;
 }
 
+/* Preço original riscado */
 .preco-antigo {
     text-decoration: line-through;
     color: gray;
@@ -47,6 +55,7 @@
     text-align: center;
 }
 
+/* Preço com desconto em destaque */
 .preco-atual {
     font-size: 18px;
     font-weight: bold;
@@ -54,6 +63,7 @@
     text-align: center;
 }
 
+/* Etiqueta amarela com a percentagem de desconto */
 .desconto {
     display: inline-block;
     margin-top: 5px;
@@ -65,6 +75,7 @@
     font-weight: bold;
 }
 
+/* Botão dentro do card de promoção */
 .card button {
     margin-top: 10px;
     width: 100%;

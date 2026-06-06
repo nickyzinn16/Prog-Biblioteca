@@ -1,10 +1,10 @@
-
+/* Título da secção de perguntas frequentes */
 .faq h2 {
     color: #2D1E6A;
     margin-bottom: 25px;
 }
 
-
+/* Cada pergunta com fundo cinza claro */
 .faq-item {
     margin-bottom: 20px;
     padding: 15px 20px;
@@ -12,6 +12,7 @@
     border-radius: 6px;
 }
 
+/* Texto da pergunta a negrito */
 .pergunta {
     margin: 0;
     color: #2D1E6A;
@@ -19,6 +20,7 @@
     font-weight: bold;
 }
 
+/* Texto da resposta */
 .resposta {
     margin-top: 8px;
     color: #242323;

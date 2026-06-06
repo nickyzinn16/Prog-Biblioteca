@@ -1,14 +1,17 @@
+/* Área principal da página inicial */
 .conteudo {
     max-width: 1500px;
     padding-top: 10px;
 }
 
+/* Grelha de 3 colunas para os catálogos */
 .catalogo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
+/* Card de cada catálogo com sombra */
 .catalogo-item {
     background-color: white;
     border-radius: 10px;
@@ -18,18 +21,21 @@
     box-shadow: 0 4px 10px darkgray;
 }
 
+/* Imagem do catálogo que ocupa toda a largura do card */
 .catalogo-item img {
     width: 100%;
     height: 180px;
     object-fit: cover;
 }
 
+/* Nome do catálogo dentro do card */
 .catalogo-item h3 {
     padding: 15px;
     color: #2D1E6A;
     font-size: 18px;
 }
 
+/* Descrição do catálogo dentro do card */
 .catalogo-item p {
     padding: 0 20px 20px;
     color: #2D1E6A;

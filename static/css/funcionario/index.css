@@ -1,21 +1,25 @@
+/* Área principal do painel centrada na página */
 .main {
     max-width: 1100px;
     margin: auto;
     padding: 40px 20px;
 }
 
+/* Título do painel centrado */
 .titulo {
     text-align: center;
     color: #2D1E6A;
     margin-bottom: 30px;
 }
 
+/* Grelha de 2 colunas para os cards do menu */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
+/* Cada card do menu com ícone e texto lado a lado */
 .menu-card {
     background: white;
     padding: 30px;
@@ -30,10 +34,12 @@
     text-align: left;
 }
 
+/* Tamanho do ícone dentro de cada card */
 .menu-card i {
     font-size: 30px;
 }
 
+/* Título dentro de cada card sem margem extra */
 .menu-card h3 {
     margin: 0;
 }

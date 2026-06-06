@@ -1,3 +1,4 @@
+/* Barra lateral fixa no lado esquerdo */
 .sidebar {
     width: 180px;
     min-height: 100vh;
@@ -10,17 +11,20 @@
     padding: 20px 0;
 }
 
+/* Logo centrado no topo da barra lateral */
 .sidebar .logo {
     text-align: center;
     padding: 10px 0 20px 0;
 }
 
+/* Tamanho da imagem do logo */
 .sidebar .logo img {
     width: 50px;
     height: auto;
     border-radius: 25%;
 }
 
+/* Lista de links do menu sem marcadores */
 .sidebar ul {
     list-style: none;
     margin: 0;
@@ -28,6 +32,7 @@
     flex: 1;
 }
 
+/* Cada link do menu */
 .sidebar ul li a {
     display: block;
     padding: 14px 25px;
@@ -37,16 +42,19 @@
     transition: 0.2s;
 }
 
+/* Cor do link ao passar o rato por cima */
 .sidebar ul li a:hover {
     background-color: #1f144a;
     color: #ffc107;
 }
 
+/* Cor do link da página atual */
 .sidebar ul li a.ativo {
     background-color: #1f144a;
     color: #ffc107;
 }
 
+/* Área do nome do utilizador e botão de sair */
 .user-menu {
     padding: 15px 25px;
     margin-bottom: 40px;
@@ -55,11 +63,13 @@
     font-size: 15px;
 }
 
+/* Nome do utilizador a negrito */
 .user-menu p {
     margin: 0 0 8px 0;
     font-weight: bold;
 }
 
+/* Link "Sair da conta" em amarelo */
 .user-menu a {
     color: #ffc107;
     text-decoration: none;

@@ -1,7 +1,9 @@
+/* Fonte padrão para todos os elementos do site */
 * {
     font-family: 'Playfair Display', serif;
 }
 
+/* Estilo geral do corpo da página com espaço para o menu fixo */
 body {
     margin: 0;
     padding: 0;
@@ -10,10 +12,12 @@ body {
     background-color: #EAECE7;
 }
 
+/* Espaçamento das secções */
 section {
     padding: 30px 80px;
 }
 
+/* Menu fixo no topo da página */
 .header {
     position: fixed;
     width: 100%;
@@ -21,6 +25,7 @@ section {
     z-index: 10;
 }
 
+/* Barra de navegação com logo e links */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -29,12 +34,14 @@ section {
     background-color: #2D1E6A;
 }
 
+/* Tamanho do logo na barra de navegação */
 .logo img {
     width: 40px;
     height: auto;
     border-radius: 25%;
 }
 
+/* Links do menu lado a lado */
 .menu ul {
     display: flex;
     align-items: center;
@@ -44,6 +51,7 @@ section {
     padding: 0;
 }
 
+/* Estilo de cada link do menu */
 .menu ul li a {
     color: white;
     text-decoration: none;
@@ -52,14 +60,17 @@ section {
     transition: 0.3s;
 }
 
+/* Cor do link ao passar o rato por cima */
 .menu ul li a:hover {
     color: #ffc107;
 }
 
+/* Cor do link da página atual */
 .menu ul li a.ativo {
     color: #ffc107;
 }
 
+/* Linha amarela que aparece por baixo do link ao passar o rato */
 .menu ul li a::after {
     content: "";
     position: absolute;
@@ -71,10 +82,12 @@ section {
     transition: 0.3s;
 }
 
+/* Expande a linha amarela ao passar o rato */
 .menu ul li a:hover::after {
     width: 100%;
 }
 
+/* Botão de login amarelo na barra de navegação */
 .navbar .btn-login {
     background-color: #ffc107;
     color: #0a2c66;
@@ -84,10 +97,12 @@ section {
     transition: 0.3s;
 }
 
+/* Cor do botão de login ao passar o rato */
 .navbar .btn-login:hover {
     color: #0a2c66;
 }
 
+/* Botão fixo para voltar ao topo da página */
 #btn-topo {
     position: fixed;
     bottom: 20px;
@@ -101,15 +116,18 @@ section {
     cursor: pointer;
 }
 
+/* Subtítulos gerais */
 h2 {
     color: #0a2c66;
     margin-bottom: 20px;
 }
 
+/* Área que envolve o conteúdo dos catálogos */
 .conteudo-catalogo {
     padding: 20px 40px;
 }
 
+/* Título do catálogo centrado */
 .titulo-catalogo {
     text-align: center;
     color: #2D1E6A;
@@ -117,6 +135,7 @@ h2 {
     margin: 30px 0;
 }
 
+/* Grelha de 2 colunas para mostrar os livros */
 .livros-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -124,6 +143,7 @@ h2 {
     padding: 0 40px 40px 40px;
 }
 
+/* Card de cada livro com imagem e texto lado a lado */
 .livro {
     display: flex;
     gap: 20px;
@@ -134,6 +154,7 @@ h2 {
     padding: 15px;
 }
 
+/* Imagem do catálogo dentro do card do livro */
 .livro img {
     width: 120px;
     height: 170px;
@@ -141,17 +162,20 @@ h2 {
     border-radius: 5px;
 }
 
+/* Título do livro dentro do card */
 .info h2 {
     font-size: 20px;
     color: #2c2c6c;
     margin-bottom: 8px;
 }
 
+/* Autor, editora e ano do livro */
 .info p {
     font-size: 20px;
     color: darkgrey;
 }
 
+/* Botão de adicionar aos favoritos */
 .btn-favorito {
     display: inline-block;
     margin-top: 10px;
@@ -165,6 +189,7 @@ h2 {
     text-decoration: none;
 }
 
+/* Botão de adicionar ao carrinho */
 .btn-carrinho {
     display: inline-block;
     margin-top: 8px;
@@ -176,12 +201,14 @@ h2 {
     font-size: 17px;
 }
 
+/* Título principal das páginas */
 .titulo {
     font-size: 38px;
     margin-bottom: 10px;
     color: #2D1E6A;
 }
 
+/* Texto de descrição abaixo do título */
 .descricao {
     font-size: 20px;
     margin-bottom: 40px;

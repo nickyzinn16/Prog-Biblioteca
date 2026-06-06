@@ -1,3 +1,4 @@
+/* Fundo escuro que cobre a página toda quando o modal está aberto */
 .modal {
     display: none;
     position: fixed;
@@ -6,15 +7,17 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1;
     justify-content: center;
     align-items: center;
 }
 
+/* Mostra o modal quando tem a classe "aberto" */
 .modal.aberto {
     display: flex;
 }
 
+/* Caixa branca do modal com sombra */
 .modal-caixa {
     background: #fff;
     border-radius: 12px;
@@ -25,12 +28,14 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Título dentro do modal */
 .modal-caixa h2 {
     color: #2D1E6A;
     font-size: 26px;
     margin-bottom: 25px;
 }
 
+/* Área que mostra os números lado a lado */
 .resumo {
     display: flex;
     justify-content: center;
@@ -38,6 +43,7 @@
     margin-bottom: 30px;
 }
 
+/* Cada caixa com um número e texto */
 .resumo-item {
     background: #f0f0f0;
     padding: 20px 30px;
@@ -45,24 +51,28 @@
     min-width: 140px;
 }
 
+/* Texto pequeno dentro de cada caixa */
 .resumo-item p {
     font-size: 16px;
     color: darkgray;
     margin-bottom: 8px;
 }
 
+/* Número grande dentro de cada caixa */
 .resumo-item span {
     font-size: 30px;
     font-weight: bold;
     color: #2D1E6A;
 }
 
+/* Área dos botões do modal lado a lado */
 .botoes {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
+/* Botão principal dentro do modal */
 .btn-modal {
     padding: 12px 30px;
     background: #2D1E6A;
@@ -74,6 +84,7 @@
     text-decoration: none;
 }
 
+/* Botão "Ver Detalhes" nos cards de relatório */
 .btn-detalhes {
     margin-top: 12px;
     padding: 8px 20px;

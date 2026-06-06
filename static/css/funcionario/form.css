@@ -1,3 +1,4 @@
+/* Caixa branca do formulário centrada na página */
 .main {
     max-width: 700px;
     margin: 50px auto;
@@ -6,12 +7,14 @@
     border-radius: 15px;
 }
 
+/* Título do formulário centrado */
 .titulo {
     text-align: center;
     color: #241855;
     font-size: 23px;
 }
 
+/* Organiza o formulário em coluna com espaço entre campos */
 form {
     display: flex;
     flex-direction: column;
@@ -19,11 +22,13 @@ form {
     margin-top: 20px;
 }
 
+/* Cada campo do formulário em coluna */
 .campo {
     display: flex;
     flex-direction: column;
 }
 
+/* Texto da etiqueta de cada campo */
 .campo label {
     margin-bottom: 8px;
     font-weight: 600;
@@ -31,6 +36,7 @@ form {
     font-size: 15px;
 }
 
+/* Caixa de texto onde o utilizador escreve */
 .campo input {
     padding: 12px 15px;
     border: 1px solid lightgrey;
@@ -38,6 +44,7 @@ form {
     font-size: 15px;
 }
 
+/* Caixa de seleção com lista de opções */
 .campo select {
     padding: 12px 15px;
     border: 1px solid lightgrey;
@@ -45,6 +52,7 @@ form {
     font-size: 15px;
 }
 
+/* Botão de guardar do formulário */
 .btn-adicionar {
     background: #241855;
     color: white;
@@ -56,6 +64,7 @@ form {
     cursor: pointer;
 }
 
+/* Link de cancelar por baixo do botão */
 form a {
     text-align: center;
     text-decoration: none;
